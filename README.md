@@ -1,2 +1,2 @@
-# Restaurant-Master
+# Matamak
 DEPI Graduation Project
