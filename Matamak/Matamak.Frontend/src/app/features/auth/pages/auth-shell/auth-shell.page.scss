@@ -1,0 +1,77 @@
+:host {
+  display: block;
+  min-height: 100dvh;
+}
+
+.auth-shell {
+  display: grid;
+  min-height: 100dvh;
+  grid-template-columns: minmax(320px, 1.08fr) minmax(360px, 0.92fr);
+  background: transparent;
+}
+
+.brand-panel {
+  margin: clamp(1rem, 3vw, 3rem);
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background:
+    linear-gradient(180deg, rgb(19 45 31 / 12%), rgb(19 45 31 / 82%)),
+    url('https://images.unsplash.com/photo-1543353071-10c8ba85a904?auto=format&fit=crop&w=1500&q=80')
+      center/cover;
+  color: #fff;
+  box-shadow: var(--matamak-shadow);
+}
+
+.brand-panel__overlay {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2rem, 4vw, 4rem);
+}
+
+.brand-panel__logo {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.brand-panel p {
+  margin: 0 0 0.6rem;
+  color: var(--matamak-gold);
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.brand-panel h1 {
+  max-width: 30rem;
+  margin: 0 0 1rem;
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  line-height: 1.2;
+}
+
+.brand-panel span {
+  display: block;
+  max-width: 31rem;
+  margin: 0;
+  color: rgb(255 255 255 / 85%);
+  font-size: 1.1rem;
+  line-height: 1.9;
+}
+
+.auth-shell__content {
+  display: grid;
+  align-content: center;
+  padding: clamp(1.5rem, 5vw, 5rem);
+}
+
+@media (max-width: 900px) {
+  .auth-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-panel {
+    min-height: 18rem;
+  }
+}

@@ -1,0 +1,116 @@
+D:\cSharb\Core\bin\Debug\net10.0\Core.deps.json
+D:\cSharb\Core\bin\Debug\net10.0\Core.dll
+D:\cSharb\Core\bin\Debug\net10.0\Core.pdb
+D:\cSharb\Core\obj\Debug\net10.0\Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\cSharb\Core\obj\Debug\net10.0\Core.AssemblyInfoInputs.cache
+D:\cSharb\Core\obj\Debug\net10.0\Core.AssemblyInfo.cs
+D:\cSharb\Core\obj\Debug\net10.0\Core.csproj.CoreCompileInputs.cache
+D:\cSharb\Core\obj\Debug\net10.0\Core.dll
+D:\cSharb\Core\obj\Debug\net10.0\refint\Core.dll
+D:\cSharb\Core\obj\Debug\net10.0\Core.pdb
+D:\cSharb\Core\obj\Debug\net10.0\ref\Core.dll
+D:\cSharb\Core\obj\Debug\net10.0\Core.csproj.AssemblyReference.cache
+C:\Users\Ziad\OneDrive\Desktop\Core\bin\Debug\net10.0\Core.deps.json
+C:\Users\Ziad\OneDrive\Desktop\Core\bin\Debug\net10.0\Core.dll
+C:\Users\Ziad\OneDrive\Desktop\Core\bin\Debug\net10.0\Core.pdb
+C:\Users\Ziad\OneDrive\Desktop\Core\obj\Debug\net10.0\Core.csproj.AssemblyReference.cache
+C:\Users\Ziad\OneDrive\Desktop\Core\obj\Debug\net10.0\Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ziad\OneDrive\Desktop\Core\obj\Debug\net10.0\Core.AssemblyInfoInputs.cache
+C:\Users\Ziad\OneDrive\Desktop\Core\obj\Debug\net10.0\Core.AssemblyInfo.cs
+C:\Users\Ziad\OneDrive\Desktop\Core\obj\Debug\net10.0\Core.csproj.CoreCompileInputs.cache
+C:\Users\Ziad\OneDrive\Desktop\Core\obj\Debug\net10.0\Core.dll
+C:\Users\Ziad\OneDrive\Desktop\Core\obj\Debug\net10.0\refint\Core.dll
+C:\Users\Ziad\OneDrive\Desktop\Core\obj\Debug\net10.0\Core.pdb
+C:\Users\Ziad\OneDrive\Desktop\Core\obj\Debug\net10.0\ref\Core.dll
+C:\Users\mos18\Downloads\project\project\Core\bin\Debug\net10.0\Core.deps.json
+C:\Users\mos18\Downloads\project\project\Core\bin\Debug\net10.0\Core.dll
+C:\Users\mos18\Downloads\project\project\Core\bin\Debug\net10.0\Core.pdb
+C:\Users\mos18\Downloads\project\project\Core\obj\Debug\net10.0\Core.csproj.AssemblyReference.cache
+C:\Users\mos18\Downloads\project\project\Core\obj\Debug\net10.0\Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mos18\Downloads\project\project\Core\obj\Debug\net10.0\Core.AssemblyInfoInputs.cache
+C:\Users\mos18\Downloads\project\project\Core\obj\Debug\net10.0\Core.AssemblyInfo.cs
+C:\Users\mos18\Downloads\project\project\Core\obj\Debug\net10.0\Core.csproj.CoreCompileInputs.cache
+C:\Users\mos18\Downloads\project\project\Core\obj\Debug\net10.0\Core.sourcelink.json
+C:\Users\mos18\Downloads\project\project\Core\obj\Debug\net10.0\Core.dll
+C:\Users\mos18\Downloads\project\project\Core\obj\Debug\net10.0\refint\Core.dll
+C:\Users\mos18\Downloads\project\project\Core\obj\Debug\net10.0\Core.pdb
+C:\Users\mos18\Downloads\project\project\Core\obj\Debug\net10.0\ref\Core.dll
+C:\Users\mos18\Downloads\project\Matamak\Core\obj\Debug\net10.0\Core.csproj.AssemblyReference.cache
+C:\Users\mos18\Downloads\project\Matamak\Core\obj\Debug\net10.0\Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mos18\Downloads\project\Matamak\Core\obj\Debug\net10.0\Core.AssemblyInfoInputs.cache
+C:\Users\mos18\Downloads\project\Matamak\Core\obj\Debug\net10.0\Core.AssemblyInfo.cs
+C:\Users\mos18\Downloads\project\Matamak\Core\obj\Debug\net10.0\Core.csproj.CoreCompileInputs.cache
+C:\Users\mos18\Downloads\project\Matamak\Core\obj\Debug\net10.0\Core.sourcelink.json
+C:\Users\mos18\Downloads\project\Matamak\Core\obj\Debug\net10.0\Core.dll
+C:\Users\mos18\Downloads\project\Matamak\Core\obj\Debug\net10.0\refint\Core.dll
+C:\Users\mos18\Downloads\project\Matamak\Core\obj\Debug\net10.0\Core.pdb
+C:\Users\mos18\Downloads\project\Matamak\Core\bin\Debug\net10.0\Core.deps.json
+C:\Users\mos18\Downloads\project\Matamak\Core\bin\Debug\net10.0\Core.dll
+C:\Users\mos18\Downloads\project\Matamak\Core\bin\Debug\net10.0\Core.pdb
+C:\Users\mos18\Downloads\project\Matamak\Core\obj\Debug\net10.0\ref\Core.dll
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Core\bin\Debug\net10.0\Core.deps.json
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Core\bin\Debug\net10.0\Core.dll
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Core\bin\Debug\net10.0\Core.pdb
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Core\obj\Debug\net10.0\Core.csproj.AssemblyReference.cache
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Core\obj\Debug\net10.0\Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Core\obj\Debug\net10.0\Core.AssemblyInfoInputs.cache
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Core\obj\Debug\net10.0\Core.AssemblyInfo.cs
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Core\obj\Debug\net10.0\Core.csproj.CoreCompileInputs.cache
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Core\obj\Debug\net10.0\Core.sourcelink.json
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Core\obj\Debug\net10.0\Core.dll
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Core\obj\Debug\net10.0\refint\Core.dll
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Core\obj\Debug\net10.0\Core.pdb
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Core\obj\Debug\net10.0\ref\Core.dll
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Core\bin\Debug\net10.0\Core.deps.json
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Core\bin\Debug\net10.0\Core.dll
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Core\bin\Debug\net10.0\Core.pdb
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Core\obj\Debug\net10.0\Core.csproj.AssemblyReference.cache
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Core\obj\Debug\net10.0\Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Core\obj\Debug\net10.0\Core.AssemblyInfoInputs.cache
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Core\obj\Debug\net10.0\Core.AssemblyInfo.cs
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Core\obj\Debug\net10.0\Core.csproj.CoreCompileInputs.cache
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Core\obj\Debug\net10.0\Core.sourcelink.json
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Core\obj\Debug\net10.0\Core.dll
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Core\obj\Debug\net10.0\refint\Core.dll
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Core\obj\Debug\net10.0\Core.pdb
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Core\obj\Debug\net10.0\ref\Core.dll
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Core\bin\Debug\net10.0\Core.deps.json
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Core\bin\Debug\net10.0\Core.dll
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Core\bin\Debug\net10.0\Core.pdb
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Core\obj\Debug\net10.0\Core.csproj.AssemblyReference.cache
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Core\obj\Debug\net10.0\Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Core\obj\Debug\net10.0\Core.AssemblyInfoInputs.cache
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Core\obj\Debug\net10.0\Core.AssemblyInfo.cs
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Core\obj\Debug\net10.0\Core.csproj.CoreCompileInputs.cache
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Core\obj\Debug\net10.0\Core.dll
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Core\obj\Debug\net10.0\refint\Core.dll
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Core\obj\Debug\net10.0\Core.pdb
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Core\obj\Debug\net10.0\ref\Core.dll
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Core\bin\Debug\net10.0\Core.deps.json
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Core\bin\Debug\net10.0\Core.dll
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Core\bin\Debug\net10.0\Core.pdb
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Core\obj\Debug\net10.0\Core.csproj.AssemblyReference.cache
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Core\obj\Debug\net10.0\Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Core\obj\Debug\net10.0\Core.AssemblyInfoInputs.cache
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Core\obj\Debug\net10.0\Core.AssemblyInfo.cs
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Core\obj\Debug\net10.0\Core.csproj.CoreCompileInputs.cache
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Core\obj\Debug\net10.0\Core.dll
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Core\obj\Debug\net10.0\refint\Core.dll
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Core\obj\Debug\net10.0\Core.pdb
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Core\obj\Debug\net10.0\ref\Core.dll
+C:\tmp\matamak-resturant-build\Core.deps.json
+C:\tmp\matamak-resturant-build\Core.dll
+C:\tmp\matamak-resturant-build\Core.pdb
+C:\Users\mos18\Downloads\Matamak\Core\bin\Debug\net10.0\Core.deps.json
+C:\Users\mos18\Downloads\Matamak\Core\bin\Debug\net10.0\Core.dll
+C:\Users\mos18\Downloads\Matamak\Core\bin\Debug\net10.0\Core.pdb
+C:\Users\mos18\Downloads\Matamak\Core\obj\Debug\net10.0\Core.csproj.AssemblyReference.cache
+C:\Users\mos18\Downloads\Matamak\Core\obj\Debug\net10.0\Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mos18\Downloads\Matamak\Core\obj\Debug\net10.0\Core.AssemblyInfoInputs.cache
+C:\Users\mos18\Downloads\Matamak\Core\obj\Debug\net10.0\Core.AssemblyInfo.cs
+C:\Users\mos18\Downloads\Matamak\Core\obj\Debug\net10.0\Core.csproj.CoreCompileInputs.cache
+C:\Users\mos18\Downloads\Matamak\Core\obj\Debug\net10.0\Core.sourcelink.json
+C:\Users\mos18\Downloads\Matamak\Core\obj\Debug\net10.0\Core.dll
+C:\Users\mos18\Downloads\Matamak\Core\obj\Debug\net10.0\refint\Core.dll
+C:\Users\mos18\Downloads\Matamak\Core\obj\Debug\net10.0\Core.pdb
+C:\Users\mos18\Downloads\Matamak\Core\obj\Debug\net10.0\ref\Core.dll

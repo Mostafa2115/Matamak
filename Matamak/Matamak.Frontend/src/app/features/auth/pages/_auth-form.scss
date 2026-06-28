@@ -1,0 +1,155 @@
+.auth-card {
+  width: min(100%, 34rem);
+  margin-inline: auto;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border: 1px solid var(--matamak-border);
+  border-radius: 0.5rem;
+  background: #fff;
+  box-shadow: var(--matamak-shadow);
+}
+
+.auth-card--wide {
+  width: min(100%, 47rem);
+}
+
+header {
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.4rem;
+  color: var(--matamak-accent);
+  font-weight: 800;
+}
+
+h2 {
+  margin: 0;
+  color: var(--matamak-text);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.15;
+}
+
+header p:not(.eyebrow) {
+  margin: 0.65rem 0 0;
+  color: var(--matamak-text-muted);
+  line-height: 1.8;
+}
+
+form {
+  display: grid;
+  gap: 1rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+label {
+  display: grid;
+  gap: 0.5rem;
+  color: var(--matamak-text);
+  font-weight: 700;
+}
+
+input {
+  width: 100%;
+  border: 1px solid var(--matamak-border);
+  border-radius: 999px;
+  background: var(--matamak-field);
+  color: var(--matamak-text);
+  font: inherit;
+  padding: 0.95rem 1.2rem;
+}
+
+input:focus {
+  border-color: var(--matamak-accent);
+  outline: 3px solid rgb(201 75 50 / 18%);
+}
+
+span {
+  color: #a83232;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.text-link,
+footer a {
+  color: var(--matamak-brown);
+  font-weight: 800;
+}
+
+.form-alert,
+.form-success {
+  margin: 0;
+  border-radius: 0.5rem;
+  padding: 0.85rem 1rem;
+  line-height: 1.7;
+}
+
+.form-alert {
+  background: #fff0f0;
+  color: #8b2323;
+}
+
+.form-success {
+  background: #ecfbef;
+  color: #146b2b;
+}
+
+.primary-action {
+  border: 0;
+  border-radius: 999px;
+  background: var(--matamak-green);
+  box-shadow: 0 12px 22px rgb(36 86 58 / 22%);
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 900;
+  padding: 1rem 1.4rem;
+}
+
+.primary-action:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+footer {
+  margin-top: 1.5rem;
+  color: var(--matamak-text-muted);
+  text-align: center;
+}
+
+.quick-login {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0 0 1rem;
+}
+
+.quick-login button {
+  border: 1px solid var(--matamak-border);
+  border-radius: 999px;
+  background: var(--matamak-muted);
+  color: var(--matamak-text);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  padding: 0.75rem 1rem;
+}
+
+.quick-login button:hover {
+  border-color: var(--matamak-green);
+  color: var(--matamak-green);
+}
+
+@media (max-width: 640px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-login {
+    grid-template-columns: 1fr;
+  }
+}

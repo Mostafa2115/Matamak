@@ -1,0 +1,489 @@
+<main class="profile-page" dir="rtl">
+  <!-- Hero Section -->
+  <section class="profile-hero">
+    <div class="hero-content">
+      <p class="sub-title">الملف الشخصي</p>
+      <h1>مرحباً، {{ user()?.username }}</h1>
+      <span class="desc">أهلاً بك في صفحتك الخاصة. هنا يمكنك إدارة حسابك الشخصي ومتابعة طلباتك السابقة.</span>
+    </div>
+    <a routerLink="/customer/menu" class="back-link">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      <span>العودة للقائمة</span>
+    </a>
+  </section>
+
+  @if (isLoading()) {
+    <div class="state-container loading-state">
+      <div class="spinner"></div>
+      <p>جاري تحميل بياناتك الشخصية...</p>
+    </div>
+  } @else if (errorMessage()) {
+    <div class="state-container error-state">
+      <div class="error-icon">⚠️</div>
+      <h3>تعذر تحميل البيانات</h3>
+      <p>{{ errorMessage() }}</p>
+      <button type="button" class="btn btn-primary" (click)="loadProfile()">إعادة المحاولة</button>
+    </div>
+  } @else if (profile(); as customer) {
+    <div class="profile-wrapper">
+      <!-- Tabs Navigation -->
+      <nav class="profile-tabs" aria-label="أقسام الملف الشخصي">
+        <button type="button" class="tab-btn" [class.active]="activeTab() === 'info'" (click)="setTab('info')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span>البيانات الشخصية</span>
+        </button>
+        <button type="button" class="tab-btn" [class.active]="activeTab() === 'password'" (click)="setTab('password')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          <span>تغيير كلمة المرور</span>
+        </button>
+        <button type="button" class="tab-btn" [class.active]="activeTab() === 'orders'" (click)="setTab('orders')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span>طلباتي السابقة</span>
+          @if (customer.deliveryOrders.length > 0) {
+            <span class="count-badge">{{ customer.deliveryOrders.length }}</span>
+          }
+        </button>
+      </nav>
+
+      <!-- Content Area -->
+      <div class="profile-content-panel">
+        
+        <!-- Tab 1: Personal Info -->
+        @if (activeTab() === 'info') {
+          <div class="tab-content">
+            @if (profileSuccessMessage()) {
+              <div class="alert alert-success">{{ profileSuccessMessage() }}</div>
+            }
+            @if (profileErrorMessage()) {
+              <div class="alert alert-danger">{{ profileErrorMessage() }}</div>
+            }
+
+            @if (!isEditing()) {
+              <div class="info-view">
+                <div class="info-header">
+                  <h2>تفاصيل الحساب</h2>
+                  <button type="button" class="btn btn-secondary" (click)="toggleEdit(true)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4z"></path>
+                    </svg>
+                    <span>تعديل البيانات</span>
+                  </button>
+                </div>
+
+                <div class="info-grid">
+                  <div class="info-card">
+                    <span class="label">اسم المستخدم</span>
+                    <strong class="value">{{ customer.username }}</strong>
+                  </div>
+                  <div class="info-card">
+                    <span class="label">البريد الإلكتروني</span>
+                    <strong class="value">{{ customer.email }}</strong>
+                  </div>
+                  <div class="info-card">
+                    <span class="label">الاسم الكامل</span>
+                    <strong class="value">{{ customer.fullName || 'لم يحدد بعد' }}</strong>
+                  </div>
+                  <div class="info-card">
+                    <span class="label">رقم الهاتف</span>
+                    <strong class="value">{{ customer.phoneNumber || 'لم يحدد بعد' }}</strong>
+                  </div>
+                  <div class="info-card full-width">
+                    <span class="label">العنوان الافتراضي للتوصيل</span>
+                    <strong class="value">{{ customer.address || 'لم يحدد بعد' }}</strong>
+                  </div>
+                </div>
+              </div>
+            } @else {
+              <form [formGroup]="profileForm" (ngSubmit)="onEditProfileSubmit()" class="info-form">
+                <h2>تعديل البيانات الشخصية</h2>
+                <span class="form-desc">يرجى تحديث بياناتك المستخدمة في التوصيل والتواصل.</span>
+
+                <div class="form-group">
+                  <label for="fullName">الاسم الكامل</label>
+                  <input id="fullName" type="text" formControlName="fullName" placeholder="أدخل اسمك الكامل" [class.is-invalid]="profileForm.controls.fullName.touched && profileForm.controls.fullName.invalid">
+                  @if (profileForm.controls.fullName.touched && profileForm.controls.fullName.errors?.['required']) {
+                    <span class="error-text">الاسم الكامل مطلوب.</span>
+                  }
+                  @if (profileForm.controls.fullName.touched && profileForm.controls.fullName.errors?.['minlength']) {
+                    <span class="error-text">الاسم يجب ألا يقل عن 3 أحرف.</span>
+                  }
+                </div>
+
+                <div class="form-group">
+                  <label for="phoneNumber">رقم الهاتف</label>
+                  <input id="phoneNumber" type="text" formControlName="phoneNumber" placeholder="مثال: 01xxxxxxxxx" [class.is-invalid]="profileForm.controls.phoneNumber.touched && profileForm.controls.phoneNumber.invalid">
+                  @if (profileForm.controls.phoneNumber.touched && profileForm.controls.phoneNumber.errors?.['required']) {
+                    <span class="error-text">رقم الهاتف مطلوب للتواصل أثناء التوصيل.</span>
+                  }
+                  @if (profileForm.controls.phoneNumber.touched && profileForm.controls.phoneNumber.errors?.['pattern']) {
+                    <span class="error-text">يرجى إدخال رقم هاتف صحيح (8 إلى 15 أرقام).</span>
+                  }
+                </div>
+
+                <div class="form-group">
+                  <label for="address">العنوان الافتراضي بالتفصيل</label>
+                  <textarea id="address" formControlName="address" rows="3" placeholder="المحافظة، المدينة، اسم الشارع، رقم المبنى والشقة..." [class.is-invalid]="profileForm.controls.address.touched && profileForm.controls.address.invalid"></textarea>
+                  @if (profileForm.controls.address.touched && profileForm.controls.address.errors?.['required']) {
+                    <span class="error-text">العنوان مطلوب لضمان وصول طلبك بشكل صحيح.</span>
+                  }
+                  @if (profileForm.controls.address.touched && profileForm.controls.address.errors?.['minlength']) {
+                    <span class="error-text">العنوان يجب ألا يقل عن 10 أحرف للتوضيح.</span>
+                  }
+                </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary" [disabled]="isSavingProfile()">
+                    @if (isSavingProfile()) {
+                      <span class="spinner-small"></span>
+                      <span>جاري الحفظ...</span>
+                    } @else {
+                      <span>حفظ التعديلات</span>
+                    }
+                  </button>
+                  <button type="button" class="btn btn-outline" (click)="toggleEdit(false)" [disabled]="isSavingProfile()">إلغاء</button>
+                </div>
+              </form>
+            }
+          </div>
+        }
+
+        <!-- Tab 2: Change Password -->
+        @if (activeTab() === 'password') {
+          <div class="tab-content">
+            @if (passwordSuccessMessage()) {
+              <div class="alert alert-success">{{ passwordSuccessMessage() }}</div>
+            }
+            @if (passwordErrorMessage()) {
+              <div class="alert alert-danger">{{ passwordErrorMessage() }}</div>
+            }
+
+            <form [formGroup]="passwordForm" (ngSubmit)="onChangePasswordSubmit()" class="password-form">
+              <h2>تغيير كلمة المرور</h2>
+              <span class="form-desc">لحماية حسابك، يرجى تعيين كلمة مرور قوية وغير مستخدمة في مواقع أخرى.</span>
+
+              <div class="form-group">
+                <label for="oldPassword">كلمة المرور الحالية</label>
+                <input id="oldPassword" type="password" formControlName="oldPassword" placeholder="••••••••" [class.is-invalid]="passwordForm.controls.oldPassword.touched && passwordForm.controls.oldPassword.invalid">
+                @if (passwordForm.controls.oldPassword.touched && passwordForm.controls.oldPassword.errors?.['required']) {
+                  <span class="error-text">كلمة المرور الحالية مطلوبة للتأكيد.</span>
+                }
+              </div>
+
+              <div class="form-group">
+                <label for="newPassword">كلمة المرور الجديدة</label>
+                <input id="newPassword" type="password" formControlName="newPassword" placeholder="••••••••" [class.is-invalid]="passwordForm.controls.newPassword.touched && passwordForm.controls.newPassword.invalid">
+                @if (passwordForm.controls.newPassword.touched && passwordForm.controls.newPassword.errors?.['required']) {
+                  <span class="error-text">كلمة المرور الجديدة مطلوبة.</span>
+                }
+                @if (passwordForm.controls.newPassword.touched && passwordForm.controls.newPassword.errors?.['minlength']) {
+                  <span class="error-text">يجب ألا تقل كلمة المرور عن 6 أحرف.</span>
+                }
+              </div>
+
+              <div class="form-group">
+                <label for="confirmPassword">تأكيد كلمة المرور الجديدة</label>
+                <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="••••••••" [class.is-invalid]="passwordForm.controls.confirmPassword.touched && passwordForm.controls.confirmPassword.invalid">
+                @if (passwordForm.controls.confirmPassword.touched && passwordForm.controls.confirmPassword.errors?.['required']) {
+                  <span class="error-text">يرجى إعادة كتابة كلمة المرور لتأكيدها.</span>
+                }
+                @if (passwordForm.touched && passwordForm.errors?.['passwordMismatch']) {
+                  <span class="error-text">تأكيد كلمة المرور غير متطابق مع كلمة المرور الجديدة.</span>
+                }
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary" [disabled]="isChangingPassword()">
+                  @if (isChangingPassword()) {
+                    <span class="spinner-small"></span>
+                    <span>جاري التحديث...</span>
+                  } @else {
+                    <span>تحديث كلمة المرور</span>
+                  }
+                </button>
+              </div>
+            </form>
+          </div>
+        }
+
+        <!-- Tab 3: My Orders -->
+        @if (activeTab() === 'orders') {
+          <div class="tab-content">
+            <div class="orders-header">
+              <h2>سجل طلبات التوصيل</h2>
+              <span class="muted">يعرض الطلبات التي قمت بطلبها للتوصيل إلى عنوانك.</span>
+            </div>
+
+            @if (orderActionMessage()) {
+              <div class="alert alert-success">{{ orderActionMessage() }}</div>
+            }
+            @if (orderActionError()) {
+              <div class="alert alert-danger">{{ orderActionError() }}</div>
+            }
+
+            @if (customer.deliveryOrders.length === 0 && customer.takeawayOrders.length === 0) {
+              <div class="empty-orders">
+                <div class="empty-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline>
+                    <path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path>
+                  </svg>
+                </div>
+                <h3>لا توجد طلبات بعد</h3>
+                <p>لم تقم بعمل أي طلبات حتى الآن. استمتع بأشهى المأكولات معنا الآن!</p>
+                <a routerLink="/customer/menu" class="btn btn-primary">تصفح قائمة الطعام</a>
+              </div>
+            } @else {
+              <div class="orders-list-wrapper">
+                @if (customer.deliveryOrders.length > 0) {
+                  <h3 class="orders-group-title">طلبات التوصيل</h3>
+                }
+                @for (order of customer.deliveryOrders; track order.id) {
+                  <div class="order-item-card">
+                    <div class="order-card-top">
+                      <div class="order-info-col">
+                        <div class="order-num-row">
+                          <span class="order-num">طلب رقم #{{ order.id }}</span>
+                          @if (order.orderDate) {
+                            <span class="order-date">{{ order.orderDate | date:'yyyy/MM/dd hh:mm a' }}</span>
+                          }
+                        </div>
+                        <span class="order-price">{{ order.totalPrice }} ج.م</span>
+                      </div>
+                      <div class="order-status-col">
+                        <span class="status-badge" [ngClass]="getOrderStatusClass(order.status)">
+                          {{ getOrderStatusLabel(order.status) }}
+                        </span>
+                        <span class="status-hint">{{ getOrderStatusHint(order.status) }}</span>
+                      </div>
+                    </div>
+
+                    <div class="order-timeline" [style.--step-count]="getOrderTimeline(order).length" [style.grid-template-columns]="'repeat(' + getOrderTimeline(order).length + ', minmax(0, 1fr))'" aria-label="تتبع حالة الطلب">
+                      @for (step of getOrderTimeline(order); track step.key) {
+                        <div class="timeline-step" [class.done]="step.done" [class.active]="step.active">
+                          <span class="timeline-dot"></span>
+                          <span class="timeline-label">{{ step.label }}</span>
+                        </div>
+                      }
+                    </div>
+
+                    @if (canCancelOrder(order.status) || canMarkOrderDelivered(order.status) || canEditOrder(order.status, 'delivery')) {
+                      <div class="order-actions">
+                        @if (canEditOrder(order.status, 'delivery')) {
+                          <button type="button" class="order-action-btn edit" (click)="openEditOrderModal(order, 'delivery')" [disabled]="updatingOrderId() === order.id" style="margin-left: 0.5rem; background-color: var(--matamak-green, #2ec4b6); color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.35rem; cursor: pointer; font-family: inherit; font-size: 0.85rem; font-weight: bold; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+                            <span>✏️ تعديل الطلب</span>
+                          </button>
+                        }
+                        @if (canCancelOrder(order.status)) {
+                          <button type="button" class="order-action-btn cancel" (click)="cancelOrder(order)" [disabled]="updatingOrderId() === order.id">
+                            @if (updatingOrderId() === order.id) {
+                              <span>جاري التحديث...</span>
+                            } @else {
+                              <span>إلغاء الطلب</span>
+                            }
+                          </button>
+                        }
+                        @if (canMarkOrderDelivered(order.status)) {
+                          <button type="button" class="order-action-btn delivered" (click)="markOrderDelivered(order)" [disabled]="updatingOrderId() === order.id">
+                            @if (updatingOrderId() === order.id) {
+                              <span>جاري التحديث...</span>
+                            } @else {
+                              <span>تم الاستلام</span>
+                            }
+                          </button>
+                        }
+                      </div>
+                    }
+                  </div>
+                }
+                @if (customer.takeawayOrders.length > 0) {
+                  <h3 class="orders-group-title">طلبات التيك أواي</h3>
+                }
+                @for (order of customer.takeawayOrders; track order.id) {
+                  <div class="order-item-card takeaway-order-card" [class.order-ready]="(order.status || '').toLowerCase() === 'ready'">
+                    @if ((order.status || '').toLowerCase() === 'ready') {
+                      <div class="ready-alert">
+                        <span class="ready-alert-icon">🛍️</span>
+                        <div>
+                          <strong>طلبك جاهز للاستلام!</strong>
+                          <p>توجه الآن للمطعم لاستلام طلبك رقم #{{ order.id }}.</p>
+                        </div>
+                      </div>
+                    }
+                    <div class="order-card-top">
+                      <div class="order-info-col">
+                        <div class="order-num-row">
+                          <span class="order-num">طلب تيك أواي #{{ order.id }}</span>
+                          @if (order.orderDate) {
+                            <span class="order-date">{{ order.orderDate | date:'yyyy/MM/dd hh:mm a' }}</span>
+                          }
+                        </div>
+                        <span class="order-price">{{ order.totalPrice }} ج.م</span>
+                      </div>
+                      <div class="order-status-col">
+                        <span class="status-badge" [ngClass]="getOrderStatusClass(order.status)">
+                          {{ getOrderStatusLabel(order.status) }}
+                        </span>
+                        <span class="status-hint">{{ getOrderStatusHint(order.status) }}</span>
+                      </div>
+                    </div>
+                    @if (canEditOrder(order.status, 'takeaway') || canCancelOrder(order.status)) {
+                      <div class="order-actions" style="margin-top: 1rem; border-top: 1px solid #eee; padding-top: 0.75rem; display: flex; justify-content: flex-end; gap: 0.5rem;">
+                        @if (canEditOrder(order.status, 'takeaway')) {
+                          <button type="button" class="order-action-btn edit" (click)="openEditOrderModal(order, 'takeaway')" [disabled]="updatingOrderId() === order.id" style="background-color: var(--matamak-green, #2ec4b6); color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.35rem; cursor: pointer; font-family: inherit; font-size: 0.85rem; font-weight: bold; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+                            <span>✏️ تعديل الطلب</span>
+                          </button>
+                        }
+                        @if (canCancelOrder(order.status)) {
+                          <button type="button" class="order-action-btn cancel" (click)="cancelTakeawayOrder(order)" [disabled]="updatingOrderId() === order.id" style="background-color: #e63946; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.35rem; cursor: pointer; font-family: inherit; font-size: 0.85rem; font-weight: bold; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+                            <span>إلغاء الطلب</span>
+                          </button>
+                        }
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  }
+</main>
+
+<!-- Edit Customer Order Modal -->
+@if (showEditOrderModal) {
+  <div class="modal-backdrop" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 1rem; direction: rtl;">
+    <div class="modal-box" style="background: white; border-radius: 0.75rem; width: 100%; max-width: 650px; max-height: 90vh; overflow-y: auto; padding: 1.5rem; box-shadow: 0 10px 25px rgba(0,0,0,0.15); box-sizing: border-box;">
+      <h2 style="margin-top: 0; color: #333; border-bottom: 2px solid #f0f0f0; padding-bottom: 0.75rem; font-size: 1.35rem; display: flex; align-items: center; gap: 0.5rem;">
+        <span>✏️ تعديل تفاصيل الطلب #{{ editingOrderId }}</span>
+        <span style="font-size: 0.9rem; font-weight: normal; background: #e0f2f1; color: #00796b; padding: 0.2rem 0.6rem; border-radius: 1rem;">
+          {{ editingOrderType === 'takeaway' ? 'تيك أواي' : 'ديليفري (توصيل)' }}
+        </span>
+      </h2>
+      
+      <form (submit)="$event.preventDefault(); saveEditOrder()">
+        
+        <!-- Customer details (Takeaway) -->
+        @if (editingOrderType === 'takeaway') {
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label style="display: block; font-weight: bold; margin-bottom: 0.35rem; font-size: 0.9rem; color: #555;">اسم العميل</label>
+            <input type="text" [(ngModel)]="editOrderForm.customerName" name="editCustName" required placeholder="أدخل اسم العميل" style="width: 100%; padding: 0.65rem; border: 1px solid #ccc; border-radius: 0.25rem; font-family: inherit; font-size: 0.9rem; box-sizing: border-box;">
+          </div>
+        }
+
+        <!-- Delivery address & phone (Delivery) -->
+        @if (editingOrderType === 'delivery') {
+          <div class="form-row" style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
+            <div class="form-group" style="flex: 1; min-width: 250px;">
+              <label style="display: block; font-weight: bold; margin-bottom: 0.35rem; font-size: 0.9rem; color: #555;">رقم هاتف التواصل</label>
+              <input type="text" [(ngModel)]="editOrderForm.contactNumber" name="editContactNo" required placeholder="مثال: 01xxxxxxxxx" style="width: 100%; padding: 0.65rem; border: 1px solid #ccc; border-radius: 0.25rem; font-family: inherit; font-size: 0.9rem; box-sizing: border-box;">
+            </div>
+            <div class="form-group" style="flex: 2; min-width: 300px;">
+              <label style="display: block; font-weight: bold; margin-bottom: 0.35rem; font-size: 0.9rem; color: #555;">عنوان التوصيل بالتفصيل</label>
+              <input type="text" [(ngModel)]="editOrderForm.deliveryAddress" name="editAddress" required placeholder="المحافظة، المدينة، اسم الشارع، رقم المبنى..." style="width: 100%; padding: 0.65rem; border: 1px solid #ccc; border-radius: 0.25rem; font-family: inherit; font-size: 0.9rem; box-sizing: border-box;">
+            </div>
+          </div>
+        }
+
+        <!-- Add items section -->
+        <div style="background: #fcfcfc; border: 1px solid #eaeaea; border-radius: 0.5rem; padding: 1rem; margin-bottom: 1.25rem;">
+          <h3 style="margin-top: 0; font-size: 0.95rem; color: #444; margin-bottom: 0.75rem; font-weight: bold; display: flex; align-items: center; gap: 0.25rem;">
+            <span>➕ إضافة أصناف للطلب</span>
+          </h3>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <select #catalogSelect style="flex: 1; padding: 0.6rem; border: 1px solid #ccc; border-radius: 0.25rem; font-family: inherit; font-size: 0.9rem; min-width: 250px; background: white;">
+              <option value="" disabled selected>-- اختر صنف لإضافته للطلب --</option>
+              @for (item of items(); track item.id) {
+                <option [ngValue]="item" [value]="item.id" [disabled]="!item.isAvailable">
+                  {{ item.name }} ({{ item.price }} ج.م) @if (!item.isAvailable) { - غير متاح }
+                </option>
+              }
+            </select>
+            <button type="button" (click)="catalogSelect.value ? addPlaylistItemToEditOrder(items()[catalogSelect.selectedIndex - 1]) : null; catalogSelect.value = ''" style="background: #00796b; color: white; border: none; padding: 0.6rem 1.25rem; border-radius: 0.25rem; cursor: pointer; font-family: inherit; font-size: 0.9rem; font-weight: bold; transition: background 0.2s;" onmouseover="this.style.background='#00695c'" onmouseout="this.style.background='#00796b'">
+              إضافة
+            </button>
+          </div>
+        </div>
+
+        <!-- Items list -->
+        <div style="margin-bottom: 1.25rem;">
+          <h3 style="margin-top: 0; font-size: 0.95rem; color: #444; margin-bottom: 0.75rem; font-weight: bold;">📦 الأصناف الحالية في الطلب</h3>
+          <div style="overflow-x: auto; border: 1px solid #eee; border-radius: 0.35rem;">
+            <table style="width: 100%; border-collapse: collapse; text-align: right; font-size: 0.85rem; min-width: 500px;">
+              <thead>
+                <tr style="background: #f7f7f7; border-bottom: 1px solid #eee; color: #555;">
+                  <th style="padding: 0.65rem 0.75rem;">الصنف</th>
+                  <th style="padding: 0.65rem 0.75rem; text-align: center;">سعر الوحدة</th>
+                  <th style="padding: 0.65rem 0.75rem; text-align: center;">الكمية</th>
+                  <th style="padding: 0.65rem 0.75rem;">ملاحظات</th>
+                  <th style="padding: 0.65rem 0.75rem; text-align: center;">الإجمالي</th>
+                  <th style="padding: 0.65rem 0.75rem; text-align: center;">إجراء</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (item of editOrderForm.items; track $index) {
+                  <tr style="border-bottom: 1px solid #f0f0f0;">
+                    <td style="padding: 0.65rem 0.75rem; font-weight: bold; color: #333;">{{ item.name }}</td>
+                    <td style="padding: 0.65rem 0.75rem; text-align: center; color: #666;">{{ item.priceForOne }} ج.م</td>
+                    <td style="padding: 0.65rem 0.75rem; text-align: center;">
+                      <div style="display: inline-flex; align-items: center; border: 1px solid #ccc; border-radius: 0.25rem; overflow: hidden; background: white;">
+                        <button type="button" (click)="updateEditOrderItemQty($index, -1)" style="border: none; background: #f0f0f0; width: 24px; height: 24px; cursor: pointer; font-weight: bold; display: flex; align-items: center; justify-content: center;">-</button>
+                        <span style="padding: 0 0.5rem; font-weight: bold; min-width: 20px; display: inline-block;">{{ item.quantity }}</span>
+                        <button type="button" (click)="updateEditOrderItemQty($index, 1)" style="border: none; background: #f0f0f0; width: 24px; height: 24px; cursor: pointer; font-weight: bold; display: flex; align-items: center; justify-content: center;">+</button>
+                      </div>
+                    </td>
+                    <td style="padding: 0.65rem 0.75rem;">
+                      <input type="text" [value]="item.note" (input)="updateEditOrderItemNote($index, $any($event.target).value)" placeholder="ملاحظات العميل" style="width: 100%; padding: 0.35rem 0.5rem; border: 1px solid #ddd; border-radius: 0.2rem; font-family: inherit; font-size: 0.8rem; box-sizing: border-box;" />
+                    </td>
+                    <td style="padding: 0.65rem 0.75rem; text-align: center; font-weight: bold; color: #00796b;">{{ item.totalPrice }} ج.م</td>
+                    <td style="padding: 0.65rem 0.75rem; text-align: center;">
+                      <button type="button" (click)="updateEditOrderItemQty($index, -item.quantity)" style="border: none; background: transparent; cursor: pointer; font-size: 1.1rem;" title="حذف">🗑️</button>
+                    </td>
+                  </tr>
+                } @empty {
+                  <tr>
+                    <td colspan="6" style="padding: 2rem; text-align: center; color: #888;">لا توجد أصناف في الطلب حالياً. يرجى إضافة أصناف.</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Total summary -->
+        <div style="display: flex; justify-content: space-between; align-items: center; background: #e0f2f1; padding: 0.75rem 1rem; border-radius: 0.35rem; margin-bottom: 1.5rem;">
+          <span style="font-weight: bold; color: #004d40;">💰 إجمالي الطلب الجديد:</span>
+          <strong style="font-size: 1.15rem; color: #004d40;">{{ editOrderForm.totalPrice }} ج.م</strong>
+        </div>
+
+        <div style="display: flex; gap: 0.75rem; justify-content: flex-end; border-top: 1px solid #f0f0f0; padding-top: 1rem;">
+          <button type="submit" [disabled]="editOrderForm.items.length === 0" style="background: #00796b; color: white; border: none; padding: 0.65rem 1.5rem; border-radius: 0.25rem; cursor: pointer; font-family: inherit; font-size: 0.9rem; font-weight: bold; transition: background 0.2s;" onmouseover="this.style.background='#00695c'" onmouseout="this.style.background='#00796b'">
+            حفظ التعديلات
+          </button>
+          <button type="button" (click)="closeEditOrderModal()" style="background: white; border: 1px solid #ccc; color: #555; padding: 0.65rem 1.5rem; border-radius: 0.25rem; cursor: pointer; font-family: inherit; font-size: 0.9rem; font-weight: bold; transition: background 0.2s;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='white'">
+            إلغاء
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+}
+
+
+
+

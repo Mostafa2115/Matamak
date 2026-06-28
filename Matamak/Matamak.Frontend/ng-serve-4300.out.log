@@ -1,0 +1,38 @@
+
+> matamak.frontend@0.0.0 start
+> ng serve --configuration development --host 127.0.0.1 --port 4300
+
+> Building...
+√ Building...
+Initial chunk files | Names            |  Raw size
+chunk-SSGUC7UH.js   | -                |   9.98 kB | 
+main.js             | main             |   4.63 kB | 
+chunk-VUJOFXKG.js   | -                | 938 bytes | 
+styles.css          | styles           | 747 bytes | 
+
+                    | Initial total    |  16.30 kB
+
+Lazy chunk files    | Names            |  Raw size
+chunk-5FLQZLLU.js   | customer-routes  | 169.57 kB | 
+chunk-5DFI6SOA.js   | auth-routes      |  97.82 kB | 
+chunk-6ZPAF43L.js   | coming-soon-page |   6.19 kB | 
+
+Application bundle generation complete. [5.201 seconds] - 2026-06-18T12:55:27.924Z
+
+Watch mode enabled. Watching for file changes...
+NOTE: Raw file sizes do not reflect development server per-request transformations.
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://127.0.0.1:[1m4300[22m/[39m
+[2m[32m  ➜[39m[22m[2m  press [22m[1mh + enter[22m[2m to show help[22m
+> Changes detected. Rebuilding...
+√ Changes detected. Rebuilding...
+Initial chunk files | Names           |  Raw size
+chunk-VH4EAIXE.js   | -               |   9.94 kB | 
+main.js             | main            |   4.63 kB | 
+
+Lazy chunk files    | Names           |  Raw size
+chunk-PIHG5KEF.js   | customer-routes | 169.57 kB | 
+chunk-VJQ5DMAO.js   | auth-routes     |  97.82 kB | 
+
+Application bundle generation complete. [1.141 seconds] - 2026-06-18T12:57:15.417Z
+
+Page reload sent to client(s).

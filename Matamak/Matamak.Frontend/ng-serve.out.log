@@ -1,0 +1,4 @@
+
+> matamak.frontend@0.0.0 start
+> ng serve --configuration development --host 127.0.0.1 --port 4200
+

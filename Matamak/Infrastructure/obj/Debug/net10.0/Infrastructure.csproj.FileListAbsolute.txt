@@ -1,0 +1,162 @@
+D:\cSharb\Infrastructure\bin\Debug\net10.0\Infrastructure.deps.json
+D:\cSharb\Infrastructure\bin\Debug\net10.0\Infrastructure.runtimeconfig.json
+D:\cSharb\Infrastructure\bin\Debug\net10.0\Infrastructure.dll
+D:\cSharb\Infrastructure\bin\Debug\net10.0\Infrastructure.pdb
+D:\cSharb\Infrastructure\bin\Debug\net10.0\Core.dll
+D:\cSharb\Infrastructure\bin\Debug\net10.0\Core.pdb
+D:\cSharb\Infrastructure\obj\Debug\net10.0\Infrastructure.csproj.AssemblyReference.cache
+D:\cSharb\Infrastructure\obj\Debug\net10.0\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\cSharb\Infrastructure\obj\Debug\net10.0\Infrastructure.AssemblyInfoInputs.cache
+D:\cSharb\Infrastructure\obj\Debug\net10.0\Infrastructure.AssemblyInfo.cs
+D:\cSharb\Infrastructure\obj\Debug\net10.0\Infrastructure.csproj.CoreCompileInputs.cache
+D:\cSharb\Infrastructure\obj\Debug\net10.0\Infrastr.15EFFBFE.Up2Date
+D:\cSharb\Infrastructure\obj\Debug\net10.0\Infrastructure.dll
+D:\cSharb\Infrastructure\obj\Debug\net10.0\refint\Infrastructure.dll
+D:\cSharb\Infrastructure\obj\Debug\net10.0\Infrastructure.pdb
+D:\cSharb\Infrastructure\obj\Debug\net10.0\Infrastructure.genruntimeconfig.cache
+D:\cSharb\Infrastructure\obj\Debug\net10.0\ref\Infrastructure.dll
+C:\Users\Ziad\OneDrive\Desktop\Infrastructure\bin\Debug\net10.0\Infrastructure.deps.json
+C:\Users\Ziad\OneDrive\Desktop\Infrastructure\bin\Debug\net10.0\Infrastructure.runtimeconfig.json
+C:\Users\Ziad\OneDrive\Desktop\Infrastructure\bin\Debug\net10.0\Infrastructure.dll
+C:\Users\Ziad\OneDrive\Desktop\Infrastructure\bin\Debug\net10.0\Infrastructure.pdb
+C:\Users\Ziad\OneDrive\Desktop\Infrastructure\bin\Debug\net10.0\Core.dll
+C:\Users\Ziad\OneDrive\Desktop\Infrastructure\bin\Debug\net10.0\Core.pdb
+C:\Users\Ziad\OneDrive\Desktop\Infrastructure\obj\Debug\net10.0\Infrastructure.csproj.AssemblyReference.cache
+C:\Users\Ziad\OneDrive\Desktop\Infrastructure\obj\Debug\net10.0\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ziad\OneDrive\Desktop\Infrastructure\obj\Debug\net10.0\Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Ziad\OneDrive\Desktop\Infrastructure\obj\Debug\net10.0\Infrastructure.AssemblyInfo.cs
+C:\Users\Ziad\OneDrive\Desktop\Infrastructure\obj\Debug\net10.0\Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Ziad\OneDrive\Desktop\Infrastructure\obj\Debug\net10.0\Infrastr.15EFFBFE.Up2Date
+C:\Users\Ziad\OneDrive\Desktop\Infrastructure\obj\Debug\net10.0\Infrastructure.dll
+C:\Users\Ziad\OneDrive\Desktop\Infrastructure\obj\Debug\net10.0\refint\Infrastructure.dll
+C:\Users\Ziad\OneDrive\Desktop\Infrastructure\obj\Debug\net10.0\Infrastructure.pdb
+C:\Users\Ziad\OneDrive\Desktop\Infrastructure\obj\Debug\net10.0\Infrastructure.genruntimeconfig.cache
+C:\Users\Ziad\OneDrive\Desktop\Infrastructure\obj\Debug\net10.0\ref\Infrastructure.dll
+C:\Users\mos18\Downloads\project\project\Infrastructure\bin\Debug\net10.0\Infrastructure.deps.json
+C:\Users\mos18\Downloads\project\project\Infrastructure\bin\Debug\net10.0\Infrastructure.runtimeconfig.json
+C:\Users\mos18\Downloads\project\project\Infrastructure\bin\Debug\net10.0\Infrastructure.dll
+C:\Users\mos18\Downloads\project\project\Infrastructure\bin\Debug\net10.0\Infrastructure.pdb
+C:\Users\mos18\Downloads\project\project\Infrastructure\bin\Debug\net10.0\Core.dll
+C:\Users\mos18\Downloads\project\project\Infrastructure\bin\Debug\net10.0\Core.pdb
+C:\Users\mos18\Downloads\project\project\Infrastructure\obj\Debug\net10.0\Infrastructure.csproj.AssemblyReference.cache
+C:\Users\mos18\Downloads\project\project\Infrastructure\obj\Debug\net10.0\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mos18\Downloads\project\project\Infrastructure\obj\Debug\net10.0\Infrastructure.AssemblyInfoInputs.cache
+C:\Users\mos18\Downloads\project\project\Infrastructure\obj\Debug\net10.0\Infrastructure.AssemblyInfo.cs
+C:\Users\mos18\Downloads\project\project\Infrastructure\obj\Debug\net10.0\Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\mos18\Downloads\project\project\Infrastructure\obj\Debug\net10.0\Infrastructure.sourcelink.json
+C:\Users\mos18\Downloads\project\project\Infrastructure\obj\Debug\net10.0\Infrastr.15EFFBFE.Up2Date
+C:\Users\mos18\Downloads\project\project\Infrastructure\obj\Debug\net10.0\Infrastructure.dll
+C:\Users\mos18\Downloads\project\project\Infrastructure\obj\Debug\net10.0\refint\Infrastructure.dll
+C:\Users\mos18\Downloads\project\project\Infrastructure\obj\Debug\net10.0\Infrastructure.pdb
+C:\Users\mos18\Downloads\project\project\Infrastructure\obj\Debug\net10.0\Infrastructure.genruntimeconfig.cache
+C:\Users\mos18\Downloads\project\project\Infrastructure\obj\Debug\net10.0\ref\Infrastructure.dll
+C:\Users\mos18\Downloads\project\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.dll
+C:\Users\mos18\Downloads\project\Matamak\Infrastructure\obj\Debug\net10.0\refint\Infrastructure.dll
+C:\Users\mos18\Downloads\project\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.pdb
+C:\Users\mos18\Downloads\project\Matamak\Infrastructure\bin\Debug\net10.0\Infrastructure.deps.json
+C:\Users\mos18\Downloads\project\Matamak\Infrastructure\bin\Debug\net10.0\Infrastructure.runtimeconfig.json
+C:\Users\mos18\Downloads\project\Matamak\Infrastructure\bin\Debug\net10.0\Infrastructure.dll
+C:\Users\mos18\Downloads\project\Matamak\Infrastructure\bin\Debug\net10.0\Infrastructure.pdb
+C:\Users\mos18\Downloads\project\Matamak\Infrastructure\bin\Debug\net10.0\Core.dll
+C:\Users\mos18\Downloads\project\Matamak\Infrastructure\bin\Debug\net10.0\Core.pdb
+C:\Users\mos18\Downloads\project\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.csproj.AssemblyReference.cache
+C:\Users\mos18\Downloads\project\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mos18\Downloads\project\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.AssemblyInfoInputs.cache
+C:\Users\mos18\Downloads\project\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.AssemblyInfo.cs
+C:\Users\mos18\Downloads\project\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\mos18\Downloads\project\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.sourcelink.json
+C:\Users\mos18\Downloads\project\Matamak\Infrastructure\obj\Debug\net10.0\Infrastr.15EFFBFE.Up2Date
+C:\Users\mos18\Downloads\project\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.genruntimeconfig.cache
+C:\Users\mos18\Downloads\project\Matamak\Infrastructure\obj\Debug\net10.0\ref\Infrastructure.dll
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\bin\Debug\net10.0\Infrastructure.deps.json
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\bin\Debug\net10.0\Infrastructure.runtimeconfig.json
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\bin\Debug\net10.0\Infrastructure.dll
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\bin\Debug\net10.0\Infrastructure.pdb
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\bin\Debug\net10.0\Core.dll
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\bin\Debug\net10.0\Core.pdb
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.csproj.AssemblyReference.cache
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.AssemblyInfoInputs.cache
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.AssemblyInfo.cs
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.sourcelink.json
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\obj\Debug\net10.0\Infrastr.15EFFBFE.Up2Date
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.dll
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\obj\Debug\net10.0\refint\Infrastructure.dll
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.pdb
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.genruntimeconfig.cache
+C:\Users\mos18\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\obj\Debug\net10.0\ref\Infrastructure.dll
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\bin\Debug\net10.0\Infrastructure.deps.json
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\bin\Debug\net10.0\Infrastructure.runtimeconfig.json
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\bin\Debug\net10.0\Infrastructure.dll
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\bin\Debug\net10.0\Infrastructure.pdb
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\bin\Debug\net10.0\Core.dll
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\bin\Debug\net10.0\Core.pdb
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.csproj.AssemblyReference.cache
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.AssemblyInfoInputs.cache
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.AssemblyInfo.cs
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.csproj.CoreCompileInputs.cache
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.sourcelink.json
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\obj\Debug\net10.0\Infrastr.15EFFBFE.Up2Date
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.dll
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\obj\Debug\net10.0\refint\Infrastructure.dll
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.pdb
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.genruntimeconfig.cache
+D:\New folder\SHR4_SWD5_S1_PROJECT1\Matamak\Infrastructure\obj\Debug\net10.0\ref\Infrastructure.dll
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Infrastructure\bin\Debug\net10.0\Infrastructure.deps.json
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Infrastructure\bin\Debug\net10.0\Infrastructure.runtimeconfig.json
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Infrastructure\bin\Debug\net10.0\Infrastructure.dll
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Infrastructure\bin\Debug\net10.0\Infrastructure.pdb
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Infrastructure\bin\Debug\net10.0\Core.dll
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Infrastructure\bin\Debug\net10.0\Core.pdb
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.csproj.AssemblyReference.cache
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.AssemblyInfo.cs
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Infrastructure\obj\Debug\net10.0\Infrastr.15EFFBFE.Up2Date
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.dll
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Infrastructure\obj\Debug\net10.0\refint\Infrastructure.dll
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.pdb
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.genruntimeconfig.cache
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak\Infrastructure\obj\Debug\net10.0\ref\Infrastructure.dll
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Infrastructure\bin\Debug\net10.0\Infrastructure.deps.json
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Infrastructure\bin\Debug\net10.0\Infrastructure.runtimeconfig.json
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Infrastructure\bin\Debug\net10.0\Infrastructure.dll
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Infrastructure\bin\Debug\net10.0\Infrastructure.pdb
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Infrastructure\bin\Debug\net10.0\Core.dll
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Infrastructure\bin\Debug\net10.0\Core.pdb
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.csproj.AssemblyReference.cache
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.AssemblyInfo.cs
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Infrastructure\obj\Debug\net10.0\Infrastr.15EFFBFE.Up2Date
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.dll
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Infrastructure\obj\Debug\net10.0\refint\Infrastructure.dll
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.pdb
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.genruntimeconfig.cache
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Infrastructure\obj\Debug\net10.0\ref\Infrastructure.dll
+C:\tmp\matamak-resturant-build\Infrastructure.deps.json
+C:\tmp\matamak-resturant-build\Infrastructure.runtimeconfig.json
+C:\tmp\matamak-resturant-build\Infrastructure.dll
+C:\tmp\matamak-resturant-build\Infrastructure.pdb
+C:\Users\mos18\Downloads\Matamak\Infrastructure\bin\Debug\net10.0\Infrastructure.deps.json
+C:\Users\mos18\Downloads\Matamak\Infrastructure\bin\Debug\net10.0\Infrastructure.runtimeconfig.json
+C:\Users\mos18\Downloads\Matamak\Infrastructure\bin\Debug\net10.0\Infrastructure.dll
+C:\Users\mos18\Downloads\Matamak\Infrastructure\bin\Debug\net10.0\Infrastructure.pdb
+C:\Users\mos18\Downloads\Matamak\Infrastructure\bin\Debug\net10.0\Core.dll
+C:\Users\mos18\Downloads\Matamak\Infrastructure\bin\Debug\net10.0\Core.pdb
+C:\Users\mos18\Downloads\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.csproj.AssemblyReference.cache
+C:\Users\mos18\Downloads\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mos18\Downloads\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.AssemblyInfoInputs.cache
+C:\Users\mos18\Downloads\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.AssemblyInfo.cs
+C:\Users\mos18\Downloads\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\mos18\Downloads\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.sourcelink.json
+C:\Users\mos18\Downloads\Matamak\Infrastructure\obj\Debug\net10.0\Infrastr.15EFFBFE.Up2Date
+C:\Users\mos18\Downloads\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.dll
+C:\Users\mos18\Downloads\Matamak\Infrastructure\obj\Debug\net10.0\refint\Infrastructure.dll
+C:\Users\mos18\Downloads\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.pdb
+C:\Users\mos18\Downloads\Matamak\Infrastructure\obj\Debug\net10.0\Infrastructure.genruntimeconfig.cache
+C:\Users\mos18\Downloads\Matamak\Infrastructure\obj\Debug\net10.0\ref\Infrastructure.dll

@@ -1,0 +1,47 @@
+:root {
+  color-scheme: light;
+  --matamak-surface: #fffaf4;
+  --matamak-muted: #f4eadc;
+  --matamak-field: #fff7ec;
+  --matamak-border: #dfcfbd;
+  --matamak-text: #211a14;
+  --matamak-text-muted: #6d6258;
+  --matamak-brown: #3a2016;
+  --matamak-green: #24563a;
+  --matamak-tomato: #c94b32;
+  --matamak-gold: #d8a84d;
+  --matamak-accent: var(--matamak-tomato);
+  --matamak-shadow: 0 18px 45px rgb(58 32 22 / 10%);
+  font-family:
+    "Segoe UI",
+    Tahoma,
+    Arial,
+    sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background:
+    linear-gradient(135deg, rgb(255 250 244 / 96%), rgb(240 247 238 / 82%)),
+    var(--matamak-surface);
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  background:
+    linear-gradient(135deg, rgb(255 250 244 / 96%), rgb(240 247 238 / 82%)),
+    var(--matamak-surface);
+  color: var(--matamak-text);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}

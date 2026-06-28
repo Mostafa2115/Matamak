@@ -1,0 +1,121 @@
+<main class="checkout-page" dir="rtl">
+  @if (orderSuccess()) {
+    <div class="success-panel">
+      <div class="success-panel__icon">🎉</div>
+      <h2>تم إرسال طلبك بنجاح!</h2>
+      <p>شكراً لتعاملك مع مطعمك. جاري تحضير طلبك الآن...</p>
+      <span>سيتم إعادة توجيهك إلى قائمة الطعام خلال ثوانٍ.</span>
+      <div class="success-panel__actions">
+        <a routerLink="/customer/menu" class="primary-action">العودة للقائمة الآن</a>
+      </div>
+    </div>
+  } @else {
+    <header class="checkout-header">
+      <nav class="breadcrumb" aria-label="مسار الصفحة">
+        <a routerLink="/customer/menu">القائمة</a>
+        <span>/</span>
+        <strong>إتمام الطلب</strong>
+      </nav>
+      <h1>إتمام الطلب</h1>
+    </header>
+
+    <div class="checkout-layout">
+      <section class="checkout-form-section">
+        <div class="type-selector">
+          @if (!isCashier()) {
+            <button type="button" [class.active]="orderType() === 'delivery'" (click)="setOrderType('delivery')">
+              🛵 توصيل للمنزل
+            </button>
+          }
+          <button type="button" [class.active]="orderType() === 'takeaway'" (click)="setOrderType('takeaway')">
+            🛍️ سفري (استلام من المطعم)
+          </button>
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="submitOrder()" novalidate class="checkout-form">
+          <label>
+            اسم العميل
+            <input type="text" formControlName="customerName" placeholder="الاسم الكامل" />
+            @if (form.controls.customerName.touched && form.controls.customerName.invalid) {
+              <span class="error-msg">اسم العميل مطلوب.</span>
+            }
+          </label>
+
+          @if (orderType() === 'delivery') {
+            <label>
+              رقم الهاتف للتواصل
+              <input type="tel" formControlName="contactNumber" placeholder="مثال: 01000000000" />
+              @if (form.controls.contactNumber.touched && form.controls.contactNumber.invalid) {
+                <span class="error-msg">يرجى إدخال رقم هاتف صحيح.</span>
+              }
+            </label>
+
+            <label>
+              عنوان التوصيل بالتفصيل
+              <textarea formControlName="deliveryAddress" rows="3" placeholder="المدينة، الشارع، رقم البناية، الطابق... (20 حرف كحد أدنى)"></textarea>
+              @if (form.controls.deliveryAddress.touched && form.controls.deliveryAddress.invalid) {
+                <span class="error-msg">
+                  العنوان مطلوب ويجب ألا يقل عن 20 حرفاً لتأكيد التوصيل. 
+                  (أنت كتبت {{ form.controls.deliveryAddress.value?.length || 0 }} حرف)
+                </span>
+              }
+            </label>
+          }
+
+          @if (errorMessage()) {
+            <div class="form-alert">{{ errorMessage() }}</div>
+          }
+
+          <button type="submit" class="primary-action submit-btn" [disabled]="form.invalid || isSubmitting() || cartService.items().length === 0">
+            {{ isSubmitting() ? 'جاري إرسال الطلب...' : 'تأكيد وإرسال الطلب' }}
+          </button>
+        </form>
+      </section>
+
+      <aside class="checkout-summary-section">
+        <h2>ملخص الطلب ({{ cartService.itemCount() }})</h2>
+        
+        @if (cartService.items().length === 0) {
+          <div class="empty-summary">
+            <p>لا توجد أصناف في السلة حالياً.</p>
+            <a routerLink="/customer/menu" class="outline-action">الذهاب للقائمة</a>
+          </div>
+        } @else {
+          <div class="summary-items-list">
+            @for (item of cartService.items(); track item.item.id) {
+              <div class="summary-item">
+                <div class="summary-item__details">
+                  <strong>{{ item.item.name }}</strong>
+                  <span>الكمية: {{ item.quantity }} × {{ item.item.price | number: '1.0-2' }} ج.م</span>
+                  @if (item.note) {
+                    <span class="summary-item__note">ملاحظة: {{ item.note }}</span>
+                  }
+                </div>
+                <strong class="summary-item__price">{{ item.item.price * item.quantity | number: '1.0-2' }} ج.م</strong>
+              </div>
+            }
+          </div>
+
+          <div class="summary-pricing">
+            <div class="price-row">
+              <span>المجموع الفرعي</span>
+              <span>{{ cartService.totalPrice() | number: '1.0-2' }} ج.م</span>
+            </div>
+
+            @if (orderType() === 'delivery') {
+              <div class="price-row">
+                <span>رسوم التوصيل</span>
+                <span>{{ deliveryFee | number: '1.0-2' }} ج.م</span>
+              </div>
+            }
+
+            <div class="price-row total-row">
+              <span>المجموع الكلي</span>
+              <strong>{{ orderTotal() | number: '1.0-2' }} ج.م</strong>
+            </div>
+          </div>
+        }
+      </aside>
+    </div>
+  }
+</main>

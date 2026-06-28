@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "npm start": {
+      "commandName": "Script",
+      "scriptName": "start",
+      "workingDirectory": ".",
+      "environmentVariables": {
+        "NODE_ENV": "development"
+      },
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:4200"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "/api": {
+    "target": "https://localhost:44357",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "info"
+  },
+  "/uploads": {
+    "target": "https://localhost:44357",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "info"
+  },
+  "/swagger": {
+    "target": "https://localhost:44357",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "info"
+  },
+  "/orderHub": {
+    "target": "https://localhost:44357",
+    "secure": false,
+    "changeOrigin": true,
+    "ws": true,
+    "logLevel": "info"
+  }
+}

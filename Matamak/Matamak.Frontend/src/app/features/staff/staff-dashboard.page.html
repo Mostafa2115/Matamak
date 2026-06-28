@@ -1,0 +1,909 @@
+<main class="staff-shell" dir="rtl">
+  <!-- Header -->
+  <header class="staff-header">
+    <a [routerLink]="brandLink()" class="brand">مطعمك</a>
+    <nav aria-label="روابط لوحة التحكم">
+      <a (click)="setTab('dashboard')" [class.active]="currentTab() === 'dashboard'">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"></rect><rect x="14" y="3" width="7" height="5" rx="1"></rect><rect x="14" y="12" width="7" height="9" rx="1"></rect><rect x="3" y="16" width="7" height="5" rx="1"></rect></svg>
+        <span>الرئيسية</span>
+      </a>
+      <a (click)="setTab('orders')" [class.active]="currentTab() === 'orders'">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        <span>الطلبات</span>
+      </a>
+      @if (isCashier()) {
+        <a (click)="setTab('pos')" [class.active]="currentTab() === 'pos'">
+          <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          <span>إنشاء طلب 🛒</span>
+        </a>
+      }
+      @if (isAdmin()) {
+        <a (click)="setTab('menu')" [class.active]="currentTab() === 'menu'">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+          <span>إدارة المنيو</span>
+        </a>
+        <a (click)="setTab('users')" [class.active]="currentTab() === 'users'">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <span>المستخدمون</span>
+        </a>
+
+        <a (click)="setTab('reports')" [class.active]="currentTab() === 'reports'">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+          <span>التقارير</span>
+        </a>
+      }
+    </nav>
+    <button type="button" class="logout-btn" (click)="logout()">تسجيل الخروج</button>
+  </header>
+
+  <!-- Notification Messages -->
+  @if (operationMessage()) {
+    <div class="alert alert-success">{{ operationMessage() }}</div>
+  }
+  @if (operationError()) {
+    <div class="alert alert-danger">{{ operationError() }}</div>
+  }
+
+  <!-- Hero panel -->
+  <section class="hero-panel">
+    <div>
+      <p class="role-badge">{{ isAdmin() ? 'حساب مدير النظام' : 'حساب كاشير' }}</p>
+      <h1>{{ title() }}</h1>
+      <span>{{ subtitle() }}</span>
+    </div>
+    <aside class="user-meta">
+      <strong>{{ user()?.email }}</strong>
+      <span>{{ role() }}</span>
+    </aside>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- TAB CONTENT SWITCHER -->
+  <!-- ========================================== -->
+  @switch (currentTab()) {
+    <!-- 1. DASHBOARD OVERVIEW -->
+    @case ('dashboard') {
+      <section class="stats-grid" aria-label="ملخص سريع">
+        @for (stat of stats(); track stat.label) {
+          <article class="stat-card" (click)="isAdmin() && stat.label === 'المنيو' ? setTab('menu') : (isAdmin() && stat.label === 'المستخدمون' ? setTab('users') : (isAdmin() && stat.label === 'التقارير' ? setTab('reports') : null))">
+            <span>{{ stat.label }}</span>
+            <strong>{{ stat.value }}</strong>
+            <p>{{ stat.note }}</p>
+          </article>
+        }
+      </section>
+
+      <section class="workspace">
+        <div class="orders-board">
+          <header>
+            <p>سير العمل</p>
+            <h2>{{ isAdmin() ? 'نظرة تشغيلية على المطعم' : 'طلبات اليوم' }}</h2>
+          </header>
+          <div class="lane-grid">
+            <article class="lane new-lane">
+              <strong>جديد 📥</strong>
+              <span>استقبال الطلبات والتحقق من التفاصيل.</span>
+            </article>
+            <article class="lane progress-lane">
+              <strong>قيد التحضير 🍳</strong>
+              <span>متابعة تجهيز الأطباق بالمطبخ.</span>
+            </article>
+            <article class="lane completed-lane">
+              <strong>مكتمل ✅</strong>
+              <span>تسليم الطلب وإغلاق الحساب.</span>
+            </article>
+          </div>
+        </div>
+
+        <aside class="actions-panel">
+          <h2>إجراءات سريعة</h2>
+          @for (action of actions(); track action.label) {
+            <a (click)="onActionClick(action)" style="cursor: pointer;">
+              <strong>{{ action.label }}</strong>
+              <span>{{ action.description }}</span>
+            </a>
+          }
+        </aside>
+      </section>
+    }
+
+    <!-- 2. MENU MANAGEMENT -->
+    @case ('menu') {
+      <section class="management-section">
+        <div class="management-grid">
+          <!-- Items List Column -->
+          <div class="main-column">
+            <header class="section-header">
+              <h2>وجبات وأطباق المنيو</h2>
+              <button class="primary-btn" (click)="openAddItemModal()">إضافة صنف جديد +</button>
+            </header>
+
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>الصورة</th>
+                  <th>الاسم</th>
+                  <th>الوصف</th>
+                  <th>السعر</th>
+                  <th>التصنيف</th>
+                  <th>متاح؟</th>
+                  <th>التحكم</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (item of items(); track item.id) {
+                  <tr>
+                    <td>
+                      <img [src]="item.imageUrl || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=80&q=80'" alt="food" class="table-img">
+                    </td>
+                    <td><strong>{{ item.name }}</strong></td>
+                    <td class="desc-cell">{{ item.description }}</td>
+                    <td>{{ item.price }} ج.م</td>
+                    <td>{{ categories()[item.catogryId - 1]?.name || 'عام' }}</td>
+                    <td>
+                      <span class="status-indicator" [class.available]="item.isAvailable" [class.unavailable]="!item.isAvailable">
+                        {{ item.isAvailable ? 'متاح' : 'غير متاح' }}
+                      </span>
+                    </td>
+                    <td>
+                      <div class="btn-group">
+                        <button class="edit-btn" (click)="openEditItemModal(item)">تعديل</button>
+                        <button class="delete-btn" (click)="deleteItem(item.id)">حذف</button>
+                      </div>
+                    </td>
+                  </tr>
+                } @empty {
+                  <tr>
+                    <td colspan="7" class="empty-cell">لا توجد أطباق مسجلة حالياً.</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Categories & Countries Columns -->
+          <div class="side-column">
+            <!-- Categories -->
+            <article class="control-box">
+              <h3>أقسام وتصنيفات الطعام</h3>
+              <form (submit)="$event.preventDefault(); addCategory()" class="inline-form">
+                <input type="text" [(ngModel)]="newCategoryName" name="cat" placeholder="اسم القسم الجديد..." required>
+                <button type="submit">إضافة</button>
+              </form>
+              <ul class="control-list">
+                @for (cat of categories(); track cat.id) {
+                  <li>
+                    <span>{{ cat.name }}</span>
+                    <button class="text-delete-btn" (click)="deleteCategory(cat.id)">حذف</button>
+                  </li>
+                }
+              </ul>
+            </article>
+
+            <!-- Countries -->
+            <article class="control-box mt-20">
+              <h3>المطابخ والبلاد</h3>
+              <form (submit)="$event.preventDefault(); addCountry()" class="inline-form">
+                <input type="text" [(ngModel)]="newCountryName" name="cnt" placeholder="اسم المطبخ/البلد..." required>
+                <button type="submit">إضافة</button>
+              </form>
+              <ul class="control-list">
+                @for (cnt of countries(); track cnt.id) {
+                  <li>
+                    <span>{{ cnt.name }}</span>
+                    <button class="text-delete-btn" (click)="deleteCountry(cnt.id)">حذف</button>
+                  </li>
+                }
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+    }
+
+    <!-- 3. USER MANAGEMENT -->
+    @case ('users') {
+      <section class="management-section">
+        <header class="section-header">
+          <h2>إدارة حسابات المستخدمين والموظفين</h2>
+          <button class="primary-btn" (click)="openAddUserModal()">إنشاء حساب موظف جديد +</button>
+        </header>
+
+        <div class="users-container">
+          <!-- Admins -->
+          <div class="users-block">
+            <h3>المدراء (Admins)</h3>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>الاسم الكامل</th>
+                  <th>اسم المستخدم</th>
+                  <th>البريد الإلكتروني</th>
+                  <th>التحكم</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (adm of admins(); track adm.username) {
+                  <tr>
+                    <td><strong>{{ adm.fullName }}</strong></td>
+                    <td>{{ adm.username }}</td>
+                    <td>{{ adm.email }}</td>
+                    <td>
+                      <button class="delete-btn" (click)="deleteUser(adm.username)">حذف</button>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Cashiers -->
+          <div class="users-block mt-20">
+            <h3>الكاشيرز (Cashiers)</h3>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>الاسم الكامل</th>
+                  <th>اسم المستخدم</th>
+                  <th>البريد الإلكتروني</th>
+                  <th>التحكم</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (csh of cashiers(); track csh.username) {
+                  <tr>
+                    <td><strong>{{ csh.fullName }}</strong></td>
+                    <td>{{ csh.username }}</td>
+                    <td>{{ csh.email }}</td>
+                    <td>
+                      <button class="delete-btn" (click)="deleteUser(csh.username)">حذف</button>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Customers -->
+          <div class="users-block mt-20">
+            <h3>العملاء المسجلين (Customers)</h3>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>الاسم الكامل</th>
+                  <th>اسم المستخدم</th>
+                  <th>البريد الإلكتروني</th>
+                  <th>رقم الهاتف</th>
+                  <th>العنوان</th>
+                  <th>التحكم</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (cust of customers(); track cust.username) {
+                  <tr>
+                    <td><strong>{{ cust.fullName }}</strong></td>
+                    <td>{{ cust.username }}</td>
+                    <td>{{ cust.email }}</td>
+                    <td>{{ cust.phoneNumber }}</td>
+                    <td>{{ cust.address }}</td>
+                    <td>
+                      <button class="delete-btn" (click)="deleteUser(cust.username)">حذف</button>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    }
+
+    <!-- 4. ORDERS WORKFLOW -->
+    @case ('orders') {
+      <section class="management-section">
+        <header class="section-header">
+          <h2>شاشة متابعة وسير الطلبات</h2>
+        </header>
+
+        <!-- Date Filter Bar -->
+        <div class="orders-date-filter">
+          <label for="ordersDatePicker">📅 عرض طلبات يوم:</label>
+          <input
+            id="ordersDatePicker"
+            type="date"
+            [value]="ordersDateFilter()"
+            (change)="ordersDateFilter.set($any($event.target).value)"
+          />
+          <button class="filter-today-btn" (click)="ordersDateFilter.set(todayStr())">اليوم</button>
+        </div>
+
+        <div class="orders-grid">
+          <!-- Delivery Orders -->
+          <div class="order-block">
+            <h3>🛵 طلبات التوصيل (Delivery)</h3>
+            @for (ord of filteredDeliveryOrders(); track ord.id) {
+              <div class="order-card">
+                <header>
+                  <strong>رقم الطلب: {{ ord.id }}</strong>
+                  <span class="status-badge" [class]="ord.status.toLowerCase()">{{ ord.status }}</span>
+                </header>
+                <div class="order-body">
+                  <p><strong>العميل:</strong> {{ ord.customerName }}</p>
+                  <p><strong>العنوان:</strong> {{ ord.deliveryAddress }}</p>
+                  <p><strong>الإجمالي:</strong> {{ ord.totalPrice }} ج.م</p>
+                </div>
+                <footer class="order-footer">
+                  @if (ord.status === 'Pending' || ord.status === 'Paid') {
+                    <button class="status-action-btn driver" (click)="updateDeliveryState(ord.id, 'driver')">تسليم للسائق</button>
+                  }
+                  @if (ord.status === 'OutForDelivery' || ord.status === 'WithDriver') {
+                    <button class="status-action-btn customer" (click)="updateDeliveryState(ord.id, 'customer')">تم التوصيل للعميل</button>
+                  }
+                  @if (ord.status !== 'Delivered' && ord.status !== 'Completed' && ord.status !== 'Canceled' && ord.status !== 'OutForDelivery') {
+                    <button class="status-action-btn cancel" (click)="updateDeliveryState(ord.id, 'cancel')">إلغاء الطلب</button>
+                  }
+                </footer>
+              </div>
+            } @empty {
+              <p class="empty-message">لا توجد طلبات توصيل في هذا اليوم.</p>
+            }
+          </div>
+
+          <!-- Dine-In Orders -->
+          <div class="order-block">
+            <h3>🍽️ طلبات الصالة (Dine-In)</h3>
+            @for (ord of filteredDineinOrders(); track ord.id) {
+              <div class="order-card">
+                <header>
+                  <strong>طاولة: {{ ord.tableNumber }}</strong>
+                  <span class="status-badge" [class]="ord.status.toLowerCase()">{{ ord.status }}</span>
+                </header>
+                <div class="order-body">
+                  <p><strong>المسؤول:</strong> {{ ord.waiterName || 'بدون تحديد' }}</p>
+                  <p><strong>الإجمالي:</strong> {{ ord.totalPrice }} ج.م</p>
+                </div>
+                <footer class="order-footer">
+                  @if (ord.status === 'Pending' || ord.status === 'Paid') {
+                    <button class="status-action-btn driver" (click)="updateDineinState(ord.id, 'Cooking')">بدء التحضير</button>
+                  }
+                  @if (ord.status === 'Cooking') {
+                    <button class="status-action-btn customer" (click)="updateDineinState(ord.id, 'Served')">تقديم الطبق</button>
+                  }
+                  @if (ord.status === 'Served') {
+                    <button class="status-action-btn driver" (click)="updateDineinState(ord.id, 'Completed')">إنهاء وإغلاق الطاولة</button>
+                  }
+                  @if ((ord.status || '').toLowerCase() !== 'completed' && (ord.status || '').toLowerCase() !== 'canceled') {
+                    <button class="status-action-btn edit" (click)="openEditOrderModal(ord, 'dinein')">✏️ تعديل</button>
+                  }
+                </footer>
+              </div>
+            } @empty {
+              <p class="empty-message">لا توجد طلبات صالة في هذا اليوم.</p>
+            }
+          </div>
+
+          <!-- Takeaway Orders -->
+          <div class="order-block">
+            <h3>🛍️ طلبات الاستلام (Takeaway)</h3>
+            @for (ord of filteredTakeawayOrders(); track ord.id) {
+              <div class="order-card">
+                <header>
+                  <strong>رقم الطلب: {{ ord.id }}</strong>
+                  <span class="status-badge" [class]="(ord.status || '').toLowerCase()">{{ ord.status }}</span>
+                </header>
+                <div class="order-body">
+                  <p><strong>العميل:</strong> {{ ord.customerName }}</p>
+                  <p><strong>الإجمالي:</strong> {{ ord.totalPrice }} ج.م</p>
+                </div>
+                <footer class="order-footer">
+                  @if ((ord.status || '').toLowerCase() === 'pending' || (ord.status || '').toLowerCase() === 'paid' || (ord.status || '').toLowerCase() === 'preparing') {
+                    <button class="status-action-btn driver" (click)="updateTakeawayState(ord.id, 'Ready')">جاهز للاستلام</button>
+                  }
+                  @if ((ord.status || '').toLowerCase() === 'ready') {
+                    <button class="status-action-btn customer" (click)="updateTakeawayState(ord.id, 'Completed')">تم التسليم للعميل</button>
+                  }
+                  @if ((ord.status || '').toLowerCase() !== 'delivered' && (ord.status || '').toLowerCase() !== 'completed' && (ord.status || '').toLowerCase() !== 'canceled' && (ord.status || '').toLowerCase() !== 'outfordelivery') {
+                    <button class="status-action-btn cancel" (click)="cancelTakeaway(ord.id)">إلغاء الطلب</button>
+                  }
+                  @if ((ord.status || '').toLowerCase() !== 'completed' && (ord.status || '').toLowerCase() !== 'canceled') {
+                    <button class="status-action-btn edit" (click)="openEditOrderModal(ord, 'takeaway')">✏️ تعديل</button>
+                  }
+                </footer>
+              </div>
+            } @empty {
+              <p class="empty-message">لا توجد طلبات استلام في هذا اليوم.</p>
+            }
+          </div>
+        </div>
+      </section>
+    }
+
+    <!-- 5. INVENTORY MANAGEMENT -->
+    @case ('inventory') {
+      <section class="management-section">
+        <header class="section-header">
+          <h2>مراقبة وتحديث كميات المخزون</h2>
+        </header>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>رقم الصنف</th>
+              <th>الكمية الحالية</th>
+              <th>الحد الأدنى للتنبيه</th>
+              <th>الحالة</th>
+              <th>تحديث</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (inv of inventoryItems(); track inv.id) {
+              <tr>
+                <td><strong>صنف رقم #{{ inv.itemId }}</strong></td>
+                <td>{{ inv.quantityInStock }} وحدات</td>
+                <td>{{ inv.lowStockThreshold }} وحدات</td>
+                <td>
+                  <span class="status-indicator" [class.available]="inv.quantityInStock > inv.lowStockThreshold" [class.unavailable]="inv.quantityInStock <= inv.lowStockThreshold">
+                    {{ inv.quantityInStock > inv.lowStockThreshold ? 'مخزون كافٍ' : 'مخزون منخفض ⚠️' }}
+                  </span>
+                </td>
+                <td>
+                  <button class="edit-btn" (click)="openEditStockModal(inv)">تعديل الكمية</button>
+                </td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="5" class="empty-cell">لا توجد بيانات مخزون مدخلة.</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </section>
+    }
+
+    <!-- 6. SALES REPORTS -->
+    @case ('reports') {
+      <section class="management-section">
+        <header class="section-header">
+          <h2>تقارير المبيعات والأرباح</h2>
+        </header>
+
+        <!-- Filter Form -->
+        <form (submit)="$event.preventDefault(); fetchSalesReport()" class="filter-bar">
+          <div class="form-group">
+            <label>من تاريخ:</label>
+            <input type="date" [(ngModel)]="reportFilter.from" name="from">
+          </div>
+          <div class="form-group">
+            <label>إلى تاريخ:</label>
+            <input type="date" [(ngModel)]="reportFilter.to" name="to">
+          </div>
+          <button type="submit" class="filter-btn">تطبيق الفلتر 🔍</button>
+        </form>
+
+        <!-- Stats Overview -->
+        @if (salesReport()) {
+          <div class="reports-summary mt-20">
+            <div class="summary-card">
+              <span>إجمالي المبيعات</span>
+              <strong>{{ salesReport().totalRevenue || 0 }} ج.م</strong>
+            </div>
+            <div class="summary-card">
+              <span>عدد العمليات الناجحة</span>
+              <strong>{{ salesReport().totalOrdersCount || 0 }} عملية</strong>
+            </div>
+          </div>
+        } @else {
+          <p class="empty-message mt-20">يرجى اختيار فلتر التاريخ لعرض التقرير المالي.</p>
+        }
+      </section>
+    }
+
+    <!-- 7. POINT OF SALE (POS) -->
+    @case ('pos') {
+      <div class="pos-layout">
+        <!-- Menu Items Column -->
+        <section class="pos-menu-column">
+          <header class="section-header">
+            <h2>قائمة الأطباق والمشروبات</h2>
+          </header>
+
+          <!-- Search Bar -->
+          <div class="pos-search-bar" style="margin-bottom: 1.5rem;">
+            <input type="text" 
+                   [value]="posSearchQuery()" 
+                   (input)="posSearchQuery.set(searchInput.value)" 
+                   #searchInput 
+                   placeholder="🔍 ابحث عن وجبة بالاسم أو الوصف..." 
+                   style="width: 100%; padding: 0.85rem 1.2rem; border: 1px solid var(--matamak-border); border-radius: 0.5rem; font-family: inherit; font-size: 0.95rem; box-sizing: border-box; background-color: #fafafa; transition: border-color 0.2s;"
+                   onfocus="this.style.borderColor='var(--matamak-green)';"
+                   onblur="this.style.borderColor='var(--matamak-border)';">
+          </div>
+
+          <!-- Categories Filter Bar -->
+          <div class="pos-categories">
+            <button type="button" class="category-filter-btn" 
+                    [class.active]="selectedPosCategory() === null" 
+                    (click)="selectPosCategory(null)">
+              الكل
+            </button>
+            @for (cat of categories(); track cat.id) {
+              <button type="button" class="category-filter-btn" 
+                      [class.active]="selectedPosCategory() === cat.id" 
+                      (click)="selectPosCategory(cat.id)">
+                {{ cat.name }}
+              </button>
+            }
+          </div>
+
+          <!-- Items Grid -->
+          <div class="pos-items-grid">
+            @for (item of filteredPosItems(); track item.id) {
+              <article class="pos-item-card">
+                <img [src]="item.imageUrl || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=240&q=80'" 
+                     alt="food" class="pos-item-img">
+                <div class="pos-item-body">
+                  <strong>{{ item.name }}</strong>
+                  <p class="pos-item-desc">{{ item.description }}</p>
+                  <div class="pos-item-footer">
+                    <span class="pos-price">{{ item.price }} ج.م</span>
+                    <button type="button" class="add-to-pos-btn" 
+                            [disabled]="!item.isAvailable" 
+                            (click)="addToPosCart(item)">
+                      {{ item.isAvailable ? 'إضافة ＋' : 'غير متاح' }}
+                    </button>
+                  </div>
+                </div>
+              </article>
+            } @empty {
+              <p class="empty-message">لا توجد وجبات متاحة حالياً تطابق البحث.</p>
+            }
+          </div>
+        </section>
+
+        <!-- Cart Panel Column -->
+        <aside class="pos-cart-column">
+          <div class="pos-cart-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--matamak-border); padding-bottom: 0.75rem; margin-bottom: 1rem;">
+            <h3 style="margin: 0; color: var(--matamak-green); font-size: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+              تفاصيل الطلب الجديد
+            </h3>
+            @if (posCart().length > 0) {
+              <button type="button" class="text-delete-btn" (click)="clearPosCart()" style="font-size: 0.85rem;">مسح السلة</button>
+            }
+          </div>
+
+          <!-- Cart Items List -->
+          <div class="pos-cart-items">
+            @for (cartItem of posCart(); track cartItem.item.id) {
+              <div class="pos-cart-item">
+                <div class="pos-cart-item-row">
+                  <div class="pos-cart-item-info">
+                    <span class="pos-cart-item-name">{{ cartItem.item.name }}</span>
+                    <span class="pos-cart-item-price">{{ cartItem.item.price }} ج.م</span>
+                  </div>
+                  <div class="pos-cart-item-actions">
+                    <button type="button" class="pos-qty-btn" (click)="updatePosQuantity(cartItem.item.id, -1)">-</button>
+                    <span class="pos-qty-val">{{ cartItem.quantity }}</span>
+                    <button type="button" class="pos-qty-btn" (click)="updatePosQuantity(cartItem.item.id, 1)">+</button>
+                  </div>
+                </div>
+                <input type="text" class="pos-item-note-input" 
+                       [value]="cartItem.note" 
+                       (input)="updatePosNote(cartItem.item.id, noteInput.value)" 
+                       #noteInput 
+                       placeholder="ملاحظات (مثال: بدون بصل)...">
+              </div>
+            } @empty {
+              <div style="text-align: center; padding: 2rem 1rem; color: var(--matamak-text-muted);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 0.75rem; color: #ccc;"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                <p style="margin: 0; font-size: 0.9rem;">السلة فارغة حالياً.</p>
+                <span style="font-size: 0.8rem; opacity: 0.8; display: block; margin-top: 0.25rem;">اضغط على الأطباق لإضافتها للطلب.</span>
+              </div>
+            }
+          </div>
+
+          <!-- Submit Form -->
+          <form (submit)="$event.preventDefault(); submitPosOrder()" class="pos-cart-form">
+            <!-- Order Type Toggle -->
+            <div class="pos-type-selector" style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+              <button type="button" 
+                      [style.background]="posOrderType() === 'takeaway' ? 'var(--matamak-green)' : '#fff'"
+                      [style.color]="posOrderType() === 'takeaway' ? '#fff' : 'inherit'"
+                      [style.borderColor]="posOrderType() === 'takeaway' ? 'var(--matamak-green)' : 'var(--matamak-border)'"
+                      (click)="posOrderType.set('takeaway')"
+                      style="flex: 1; padding: 0.65rem; border: 1px solid; border-radius: 0.35rem; font-weight: bold; cursor: pointer; transition: all 0.2s;">
+                🛍️ سفري (تيك أواي)
+              </button>
+              <button type="button" 
+                      [style.background]="posOrderType() === 'dinein' ? 'var(--matamak-green)' : '#fff'"
+                      [style.color]="posOrderType() === 'dinein' ? '#fff' : 'inherit'"
+                      [style.borderColor]="posOrderType() === 'dinein' ? 'var(--matamak-green)' : 'var(--matamak-border)'"
+                      (click)="posOrderType.set('dinein')"
+                      style="flex: 1; padding: 0.65rem; border: 1px solid; border-radius: 0.35rem; font-weight: bold; cursor: pointer; transition: all 0.2s;">
+                🍽️ صالة (طاولة)
+              </button>
+            </div>
+
+            @if (posOrderType() === 'takeaway') {
+              <label>
+                اسم العميل
+                <input type="text" class="pos-customer-input" 
+                       [(ngModel)]="posCustomerName" 
+                       name="customerName" 
+                       placeholder="اسم العميل الكامل..." required>
+              </label>
+            } @else {
+              <label>
+                رقم الطاولة
+                <input type="number" class="pos-customer-input" 
+                       [ngModel]="posTableNumber()" 
+                       (ngModelChange)="posTableNumber.set($event)" 
+                       name="tableNumber" 
+                       min="1" 
+                       placeholder="رقم الطاولة..." required>
+              </label>
+            }
+
+            <div class="pos-summary">
+              <span>المجموع الإجمالي</span>
+              <strong>{{ posTotal() }} ج.م</strong>
+            </div>
+
+            <button type="submit" class="pos-submit-btn" 
+                    [disabled]="posCart().length === 0 || (posOrderType() === 'takeaway' ? !posCustomerName.trim() : (!posTableNumber() || posTableNumber()! <= 0)) || isPosSubmitting()">
+              {{ isPosSubmitting() ? 'جاري إرسال الطلب...' : 'تأكيد وإرسال الطلب' }}
+            </button>
+          </form>
+        </aside>
+      </div>
+    }
+  }
+</main>
+
+<!-- ========================================== -->
+<!-- MODAL WINDOWS -->
+<!-- ========================================== -->
+
+<!-- 1. Add / Edit Item Modal -->
+@if (showItemModal) {
+  <div class="modal-backdrop">
+    <div class="modal-box">
+      <h2>{{ editingItem ? 'تعديل بيانات الوجبة' : 'إضافة وجبة جديدة للمنيو' }}</h2>
+      <form (submit)="$event.preventDefault(); saveItem()">
+        <div class="form-field">
+          <label>اسم الوجبة</label>
+          <input type="text" [(ngModel)]="itemForm.name" name="name" required>
+        </div>
+        <div class="form-field">
+          <label>الوصف</label>
+          <textarea [(ngModel)]="itemForm.description" name="desc" required></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label>السعر (ج.م)</label>
+            <input type="number" [(ngModel)]="itemForm.price" name="price" required>
+          </div>
+          <div class="form-field">
+            <label>صورة الوجبة (اختر ملف أو اكتب رابطاً)</label>
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+              <input type="file" (change)="onFileSelected($event)" accept="image/*" style="font-family: inherit; font-size: 0.85rem;" [disabled]="isUploadingImage">
+              <input type="text" [(ngModel)]="itemForm.imageUrl" name="img" placeholder="أو اكتب رابط الصورة المباشر هنا..." style="font-family: inherit; font-size: 0.85rem;" [disabled]="isUploadingImage">
+              @if (isUploadingImage) {
+                <span style="font-size: 0.8rem; color: var(--matamak-green, #2ec4b6); font-weight: bold;">جاري رفع الصورة... ⏳</span>
+              } @else if (itemForm.imageUrl) {
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.25rem;">
+                  <img [src]="itemForm.imageUrl" alt="preview" style="width: 50px; height: 50px; object-fit: cover; border-radius: 0.25rem; border: 1px solid #ddd;">
+                  <span style="font-size: 0.8rem; color: #666; word-break: break-all;">معاينة الصورة المحددة</span>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label>القسم / التصنيف</label>
+            <select [(ngModel)]="itemForm.catogryId" name="cat" required>
+              @for (cat of categories(); track cat.id) {
+                <option [value]="cat.id">{{ cat.name }}</option>
+              }
+            </select>
+          </div>
+          <div class="form-field">
+            <label>المطبخ / البلد</label>
+            <select [(ngModel)]="itemForm.countryId" name="country" required>
+              @for (cnt of countries(); track cnt.id) {
+                <option [value]="cnt.id">{{ cnt.name }}</option>
+              }
+            </select>
+          </div>
+        </div>
+        <div class="form-field checkbox-field">
+          <input type="checkbox" [(ngModel)]="itemForm.isAvailable" name="avail" id="avail">
+          <label for="avail">متاح للطلب الآن؟</label>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="save-btn">حفظ</button>
+          <button type="button" class="cancel-btn" (click)="showItemModal = false">إلغاء</button>
+        </div>
+      </form>
+    </div>
+  </div>
+}
+
+<!-- 2. Add User / Staff Modal -->
+@if (showUserModal) {
+  <div class="modal-backdrop">
+    <div class="modal-box">
+      <h2>إنشاء حساب موظف جديد</h2>
+      <form (submit)="$event.preventDefault(); saveUser()">
+        <div class="form-row">
+          <div class="form-field">
+            <label>اسم المستخدم (Username)</label>
+            <input type="text" [(ngModel)]="userForm.username" name="uname" required>
+          </div>
+          <div class="form-field">
+            <label>الاسم الكامل</label>
+            <input type="text" [(ngModel)]="userForm.fullName" name="fname" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label>البريد الإلكتروني</label>
+            <input type="email" [(ngModel)]="userForm.email" name="email" required>
+          </div>
+          <div class="form-field">
+            <label>رقم الهاتف</label>
+            <input type="text" [(ngModel)]="userForm.phone" name="phone" required>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>العنوان</label>
+          <input type="text" [(ngModel)]="userForm.address" name="addr" required>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label>كلمة المرور</label>
+            <input type="password" [(ngModel)]="userForm.password" name="pwd" required>
+          </div>
+          <div class="form-field">
+            <label>تأكيد كلمة المرور</label>
+            <input type="password" [(ngModel)]="userForm.confirmPassword" name="cpwd" required>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>دور الموظف (Role)</label>
+          <select [(ngModel)]="selectedUserRole" name="role" required>
+            <option value="Cashier">كاشير (Cashier)</option>
+            <option value="Admin">مدير نظام (Admin)</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="save-btn">إنشاء الحساب</button>
+          <button type="button" class="cancel-btn" (click)="showUserModal = false">إلغاء</button>
+        </div>
+      </form>
+    </div>
+  </div>
+}
+
+<!-- 3. Edit Inventory Modal -->
+@if (showInventoryModal) {
+  <div class="modal-backdrop">
+    <div class="modal-box small-modal">
+      <h2>تعديل كمية المخزون صنف #{{ selectedInventoryItem?.itemId }}</h2>
+      <form (submit)="$event.preventDefault(); saveStock()">
+        <div class="form-field">
+          <label>الكمية المتاحة حالياً</label>
+          <input type="number" [(ngModel)]="inventoryForm.quantityInStock" name="stock" required>
+        </div>
+        <div class="form-field">
+          <label>حد إنذار نقص المخزون</label>
+          <input type="number" [(ngModel)]="inventoryForm.lowStockThreshold" name="threshold" required>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="save-btn">تحديث المخزون</button>
+          <button type="button" class="cancel-btn" (click)="showInventoryModal = false">إلغاء</button>
+        </div>
+      </form>
+    </div>
+  </div>
+}
+
+<!-- 4. Edit Order Modal -->
+@if (showEditOrderModal) {
+  <div class="modal-backdrop">
+    <div class="modal-box large-modal">
+      <h2>✏️ تعديل تفاصيل الطلب #{{ editingOrderId }} ({{ editingOrderType === 'takeaway' ? 'تيك أواي' : 'صالة' }})</h2>
+      <form (submit)="$event.preventDefault(); saveEditOrder()">
+        
+        <!-- Order info fields -->
+        @if (editingOrderType === 'takeaway') {
+          <div class="form-field">
+            <label>اسم العميل</label>
+            <input type="text" [(ngModel)]="editOrderForm.customerName" name="editCustName" required placeholder="أدخل اسم العميل">
+          </div>
+        } @else if (editingOrderType === 'dinein') {
+          <div class="form-field">
+            <label>رقم الطاولة</label>
+            <input type="number" [(ngModel)]="editOrderForm.tableNumber" name="editTableNo" required min="1">
+          </div>
+        }
+
+        <!-- Add item section -->
+        <div class="edit-order-add-item-section">
+          <h3>➕ إضافة أصناف للطلب</h3>
+          <div class="add-item-row">
+            <select #catalogSelect class="catalog-select-dropdown">
+              <option value="" disabled selected>-- اختر صنف لإضافته للطلب --</option>
+              @for (item of items(); track item.id) {
+                <option [ngValue]="item" [value]="item.id" [disabled]="!item.isAvailable">
+                  {{ item.name }} ({{ item.price }} ج.م) @if (!item.isAvailable) { - غير متاح }
+                </option>
+              }
+            </select>
+            <button type="button" class="add-item-to-order-btn" (click)="catalogSelect.value ? addPlaylistItemToEditOrder(items()[catalogSelect.selectedIndex - 1]) : null; catalogSelect.value = ''">
+              إضافة
+            </button>
+          </div>
+        </div>
+
+        <!-- Order items list -->
+        <div class="edit-order-items-list">
+          <h3>📦 الأصناف الحالية في الطلب</h3>
+          <div class="table-responsive">
+            <table class="edit-order-items-table">
+              <thead>
+                <tr>
+                  <th>الصنف</th>
+                  <th>سعر الفردي</th>
+                  <th>الكمية</th>
+                  <th>ملاحظات</th>
+                  <th>الإجمالي</th>
+                  <th>إجراء</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (item of editOrderForm.items; track $index) {
+                  <tr>
+                    <td class="item-name-cell"><strong>{{ item.name }}</strong></td>
+                    <td>{{ item.priceForOne }} ج.م</td>
+                    <td>
+                      <div class="quantity-control-btns">
+                        <button type="button" class="qty-btn" (click)="updateEditOrderItemQty($index, -1)">-</button>
+                        <span class="qty-value">{{ item.quantity }}</span>
+                        <button type="button" class="qty-btn" (click)="updateEditOrderItemQty($index, 1)">+</button>
+                      </div>
+                    </td>
+                    <td>
+                      <input type="text" [value]="item.note" (input)="updateEditOrderItemNote($index, $any($event.target).value)" placeholder="لا توجد ملاحظات" class="item-note-input" />
+                    </td>
+                    <td class="item-total-cell">{{ item.totalPrice }} ج.م</td>
+                    <td>
+                      <button type="button" class="remove-item-btn" (click)="updateEditOrderItemQty($index, -item.quantity)" title="حذف الصنف">🗑️</button>
+                    </td>
+                  </tr>
+                } @empty {
+                  <tr>
+                    <td colspan="6" class="no-items-placeholder">لا توجد أصناف في الطلب حالياً. يرجى إضافة أصناف.</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Total Price summary -->
+        <div class="edit-order-total-summary">
+          <span>💰 إجمالي الطلب الجديد:</span>
+          <strong>{{ editOrderForm.totalPrice }} ج.م</strong>
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="save-btn" [disabled]="editOrderForm.items.length === 0">حفظ التعديلات</button>
+          <button type="button" class="cancel-btn" (click)="closeEditOrderModal()">إلغاء</button>
+        </div>
+      </form>
+    </div>
+  </div>
+}
+

@@ -1,0 +1,43 @@
+<div class="customer-shell" dir="rtl">
+  <header class="site-header">
+    <a [routerLink]="brandLink()" class="brand">مطعمك</a>
+
+    <nav aria-label="القائمة الرئيسية">
+      <a routerLink="/customer/menu" routerLinkActive="active">القائمة</a>
+      <a routerLink="/customer/profile" [queryParams]="{ tab: 'orders' }" routerLinkActive="active">تتبع الطلب</a>
+      @if (isCashier()) {
+        <a routerLink="/cashier">لوحة الكاشير</a>
+      }
+      @if (isAdmin()) {
+        <a routerLink="/admin">لوحة الإدارة</a>
+      }
+      <button type="button" class="cart-trigger-btn" (click)="cartService.openDrawer()">
+        السلة
+        @if (cartService.itemCount() > 0) {
+          <span class="cart-badge">{{ cartService.itemCount() }}</span>
+        }
+      </button>
+    </nav>
+
+    <div class="site-header__actions">
+      <a routerLink="/customer/profile" class="profile-link" title="عرض الملف الشخصي">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="profile-icon">
+          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+        <span>مرحبا، {{ displayName() }}</span>
+      </a>
+      <button type="button" class="outline-action" (click)="logout()">تسجيل الخروج</button>
+    </div>
+  </header>
+
+  <router-outlet />
+
+  <footer class="site-footer">
+    <strong>مطعمك</strong>
+    <span>تجربة طعام مريحة تجمع بين أطباق شهية، طلب سريع، وخدمة واضحة من أول اختيار حتى آخر لقمة.</span>
+  </footer>
+
+  <app-cart-drawer [isOpen]="cartService.isDrawerOpen()" (closeDrawer)="cartService.closeDrawer()" />
+</div>
+

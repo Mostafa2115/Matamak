@@ -1,0 +1,2 @@
+C:\Users\Ziad\OneDrive\Desktop\matamk\Matamak (1)\Matamak\Matamak.Frontend\obj\Debug\Matamak.Frontend.esproj.CoreCompileInputs.cache
+C:\Users\mos18\Downloads\Matamak\Matamak.Frontend\obj\Debug\Matamak.Frontend.esproj.CoreCompileInputs.cache

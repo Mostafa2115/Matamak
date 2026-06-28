@@ -1,0 +1,107 @@
+<main class="menu-page" dir="rtl">
+  <section class="menu-hero">
+    <div>
+      <p>القائمة</p>
+      <h1>أطباق طازجة تناسب كل ذوق</h1>
+      <span>تصفح الأصناف المتاحة، وابحث أو فلتر حسب التصنيف والمطبخ. الصور هنا مخصصة للأكلات حتى تظل الواجهة مناسبة لطبيعة المشروع.</span>
+    </div>
+    <button type="button" class="hero-cart-btn" (click)="cartService.openDrawer()">
+      السلة
+      @if (cartService.itemCount() > 0) {
+        <span>({{ cartService.itemCount() }})</span>
+      }
+    </button>
+  </section>
+
+  <section class="menu-layout">
+    <aside class="filters-panel" aria-label="تصفية القائمة">
+      <h2>التصفية</h2>
+
+      <label class="search-box">
+        ابحث عن طبق
+        <input type="search" [formControl]="searchControl" placeholder="اسم الصنف أو الوصف..." />
+      </label>
+
+      <div class="filter-group">
+        <h3>التصنيفات</h3>
+        @if (isLoadingLookups()) {
+          <p class="muted">جاري تحميل التصنيفات...</p>
+        } @else if (categories().length === 0) {
+          <p class="muted">لا توجد تصنيفات متاحة.</p>
+        } @else {
+          <button type="button" [class.active]="selectedCategoryId() === null" (click)="selectCategory(null)">
+            الكل
+          </button>
+          @for (category of categories(); track trackById($index, category)) {
+            <button
+              type="button"
+              [class.active]="selectedCategoryId() === category.id"
+              (click)="selectCategory(category.id)"
+            >
+              {{ category.name }}
+            </button>
+          }
+        }
+      </div>
+
+      <label class="select-box">
+        المطبخ / البلد
+        <select [value]="selectedCountryId() ?? ''" (change)="selectCountry($event)">
+          <option value="">كل المطابخ</option>
+          @for (country of countries(); track trackById($index, country)) {
+            <option [value]="country.id">{{ country.name }}</option>
+          }
+        </select>
+      </label>
+
+      <button type="button" class="clear-action" (click)="clearFilters()">مسح التصفية</button>
+    </aside>
+
+    <section class="items-section" aria-label="الأصناف">
+      @if (isLoadingItems()) {
+        <div class="state-panel">
+          <strong>جاري تحميل القائمة...</strong>
+          <span>نقرأ الأصناف من API القائمة الحالية.</span>
+        </div>
+      } @else if (errorMessage()) {
+        <div class="state-panel state-panel--error">
+          <strong>تعذر تحميل الأصناف</strong>
+          <span>{{ errorMessage() }}</span>
+          <button type="button" (click)="loadItems()">إعادة المحاولة</button>
+        </div>
+      } @else if (items().length === 0) {
+        <div class="state-panel">
+          <strong>لا توجد أصناف مطابقة</strong>
+          <span>جرب تغيير البحث أو التصفية الحالية.</span>
+        </div>
+      } @else {
+        <div class="items-grid">
+          @for (item of items(); track trackById($index, item)) {
+            <article class="item-card">
+              <a [routerLink]="['/customer/items', item.id]" class="item-card__image">
+                <img [src]="foodImageFor(item, $index)" [alt]="item.name ?? 'طبق من القائمة'" />
+              </a>
+              <div class="item-card__body">
+                <div>
+                  <h2>{{ item.name || 'صنف بدون اسم' }}</h2>
+                  <p>{{ item.description || 'لا يوجد وصف متاح لهذا الصنف.' }}</p>
+                </div>
+                <footer>
+                  <strong>{{ item.price | number: '1.0-2' }} ج.م</strong>
+                  @if (item.isAvailable) {
+                    <div class="item-actions">
+                      <a [routerLink]="['/customer/items', item.id]" class="btn-details">التفاصيل</a>
+                      <button type="button" class="btn-add-cart" (click)="addToCart(item)">إضافة</button>
+                    </div>
+                  } @else {
+                    <span class="unavailable">غير متاح</span>
+                  }
+                </footer>
+              </div>
+            </article>
+          }
+        </div>
+      }
+    </section>
+  </section>
+</main>

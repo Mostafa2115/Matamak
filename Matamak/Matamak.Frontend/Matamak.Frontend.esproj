@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/1.0.586930">
+  <PropertyGroup>
+    <!-- Angular dev server command shown in VS toolbar -->
+    <StartupCommand>npm start</StartupCommand>
+    <!-- Port Angular will serve on (ng serve default) -->
+    <JavaScriptTestRoot>src\</JavaScriptTestRoot>
+    <JavaScriptTestFramework>Jasmine</JavaScriptTestFramework>
+    <!-- The build output folder (used by VS to find static files) -->
+    <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\Matamak.Frontend\browser\</BuildOutputFolder>
+    <!-- Tell VS to not auto-open a browser for this project -->
+    <ShouldRunTests>false</ShouldRunTests>
+  </PropertyGroup>
+
+  <!-- Restore node packages before build -->
+  <Target Name="RestoreNpmPackages" BeforeTargets="Build">
+    <Exec Command="npm install" WorkingDirectory="$(MSBuildProjectDirectory)" />
+  </Target>
+
+  <!-- Build the Angular app for production -->
+  <Target Name="BuildAngular" AfterTargets="RestoreNpmPackages">
+    <Exec Command="npm run build" WorkingDirectory="$(MSBuildProjectDirectory)" />
+  </Target>
+</Project>

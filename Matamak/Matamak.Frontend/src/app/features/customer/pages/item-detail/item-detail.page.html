@@ -1,0 +1,84 @@
+<main class="detail-page" dir="rtl">
+  @if (isLoading()) {
+    <section class="state-panel">
+      <strong>جاري تحميل تفاصيل الصنف...</strong>
+      <span>نقرأ البيانات من API الأصناف.</span>
+    </section>
+  } @else if (errorMessage()) {
+    <section class="state-panel state-panel--error">
+      <strong>تعذر تحميل الصنف</strong>
+      <span>{{ errorMessage() }}</span>
+      <button type="button" (click)="loadItem()">إعادة المحاولة</button>
+      <a routerLink="/customer/menu">العودة للقائمة</a>
+    </section>
+  } @else if (item(); as selectedItem) {
+    <nav class="breadcrumb" aria-label="مسار الصفحة">
+      <a routerLink="/customer/menu">القائمة</a>
+      <span>/</span>
+      <strong>{{ selectedItem.name || 'تفاصيل الصنف' }}</strong>
+    </nav>
+
+    <section class="detail-layout">
+      <div class="image-panel">
+        <img [src]="foodImageFor(selectedItem)" [alt]="selectedItem.name ?? 'طبق من القائمة'" />
+      </div>
+
+      <article class="info-panel">
+        <p class="eyebrow">صنف رقم {{ selectedItem.id }}</p>
+        <h1>{{ selectedItem.name || 'صنف بدون اسم' }}</h1>
+        <strong>{{ selectedItem.price | number: '1.0-2' }} ج.م</strong>
+        <p>{{ selectedItem.description || 'لا يوجد وصف متاح لهذا الصنف.' }}</p>
+
+        <dl>
+          <div>
+            <dt>التصنيف</dt>
+            <dd>#{{ selectedItem.catogryId }}</dd>
+          </div>
+          <div>
+            <dt>المطبخ / البلد</dt>
+            <dd>#{{ selectedItem.countryId }}</dd>
+          </div>
+          <div>
+            <dt>الحالة</dt>
+            <dd>{{ selectedItem.isAvailable ? 'متاح' : 'غير متاح' }}</dd>
+          </div>
+        </dl>
+
+        <div class="actions">
+          @if (selectedItem.isAvailable) {
+            <div class="quantity-selector">
+              <button type="button" class="btn-qty" (click)="decrementQuantity()">-</button>
+              <span class="qty-val">{{ quantity() }}</span>
+              <button type="button" class="btn-qty" (click)="incrementQuantity()">+</button>
+            </div>
+            <button type="button" class="primary-action add-to-cart-btn" (click)="addToCart()">إضافة للسلة</button>
+          } @else {
+            <span class="unavailable-badge">غير متاح حاليا</span>
+          }
+        </div>
+      </article>
+    </section>
+
+    <section class="reviews-panel">
+      <header>
+        <h2>تقييمات العملاء</h2>
+      </header>
+
+      @if (reviews().length === 0) {
+        <p class="empty-reviews">لا توجد تقييمات لهذا الصنف حاليا.</p>
+      } @else {
+        <div class="reviews-grid">
+          @for (review of reviews(); track review.id) {
+            <article class="review-card">
+              <div>
+                <strong>{{ review.customerUsername }}</strong>
+                <span>{{ review.rating }} / 5</span>
+              </div>
+              <p>{{ review.comment || 'لا يوجد تعليق نصي.' }}</p>
+            </article>
+          }
+        </div>
+      }
+    </section>
+  }
+</main>

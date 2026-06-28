@@ -1,0 +1,62 @@
+<div class="cart-overlay" [class.open]="isOpen" (click)="close()"></div>
+<div class="cart-drawer" [class.open]="isOpen" dir="rtl">
+  <header class="cart-drawer__header">
+    <h2>سلة المشتريات ({{ cartService.itemCount() }})</h2>
+    <button type="button" class="close-btn" (click)="close()" aria-label="إغلاق السلة">×</button>
+  </header>
+
+  <div class="cart-drawer__content">
+    @if (cartService.items().length === 0) {
+      <div class="empty-cart">
+        <span class="empty-cart__icon">🛒</span>
+        <h3>سلتك فارغة</h3>
+        <p>ابدأ بتصفح القائمة وأضف أطباقك المفضلة!</p>
+        <button type="button" class="primary-action" (click)="close()">تصفح القائمة</button>
+      </div>
+    } @else {
+      <div class="cart-items-list">
+        @for (cartItem of cartService.items(); track cartItem.item.id) {
+          <article class="cart-item">
+            <div class="cart-item__image">
+              @if (cartItem.item.imageUrl) {
+                <img [src]="cartItem.item.imageUrl" [alt]="cartItem.item.name ?? 'صنف'" />
+              } @else {
+                <span>🍲</span>
+              }
+            </div>
+            <div class="cart-item__details">
+              <h3>{{ cartItem.item.name || 'صنف بدون اسم' }}</h3>
+              <span class="cart-item__price">{{ cartItem.item.price | number: '1.0-2' }} ج.م</span>
+              @if (cartItem.note) {
+                <span class="cart-item__note">ملاحظة: {{ cartItem.note }}</span>
+              }
+            </div>
+            <div class="cart-item__actions">
+              <div class="quantity-control">
+                <button type="button" (click)="decrementQuantity(cartItem.item.id, cartItem.quantity)">-</button>
+                <span>{{ cartItem.quantity }}</span>
+                <button type="button" (click)="incrementQuantity(cartItem.item.id, cartItem.quantity)">+</button>
+              </div>
+              <button type="button" class="remove-btn" (click)="removeItem(cartItem.item.id)" title="حذف الصنف">
+                حذف
+              </button>
+            </div>
+          </article>
+        }
+      </div>
+    }
+  </div>
+
+  @if (cartService.items().length > 0) {
+    <footer class="cart-drawer__footer">
+      <div class="subtotal">
+        <span>المجموع الفرعي</span>
+        <strong>{{ cartService.totalPrice() | number: '1.0-2' }} ج.م</strong>
+      </div>
+      <p class="delivery-notice">رسوم التوصيل والضرائب يتم حسابها عند الدفع.</p>
+      <button type="button" class="primary-action checkout-btn" (click)="goToCheckout()">
+        الذهاب لإتمام الطلب
+      </button>
+    </footer>
+  }
+</div>
