@@ -2,6 +2,8 @@
 
 ![Matamak Banner](Matamak/screenshots/banner.png)
 
+---
+
 # 🍽️ Matamak - Restaurant Ordering & Management System
 
 [![.NET 10](https://img.shields.io/badge/.NET-10-512BD4?style=for-the-badge&logo=.net&logoColor=white)](https://dotnet.microsoft.com/)
