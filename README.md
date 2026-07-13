@@ -12,6 +12,8 @@
 [![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)](https://angular.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Sass](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)](https://sass-lang.com/)
+[![Sass](https://img.shields.io/badge/Presentation-ffffff?style=for-the-badge&logo=presentation&logoColor=white)](https://drive.google.com/file/d/1EC4FDwd5u3NfbxgcPHyCSpgzgCJsAkTj/view?usp=drive_link)
+
 
 Matamak is a comprehensive, modern restaurant ordering and management system designed to digitalize daily food operations. It connects customers, cashiers, and system administrators through a seamless real-time workflow, linking a fully interactive Angular frontend with a robust C# .NET 10 Web API backend.
 
